@@ -8,6 +8,9 @@ function NewMatch() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+    },[]);
+
+    const creatNewMatch = () => {
         const randomNumber = Math.floor(Math.random() * 100) + 1;
         const date = moment().format("YYYY MM DD");
         const matchDetails = {
@@ -19,7 +22,8 @@ function NewMatch() {
             type: 'CREATE_MATCH_DB',
             payload: matchDetails
         })
-    },[]);
+
+    }
 
 
     return (
@@ -27,7 +31,7 @@ function NewMatch() {
             <h2>Match #</h2>
             <h3>Match Code:</h3>
             <Link to="/match">
-                <button>Start</button>
+                <button onClick={creatNewMatch}>Start</button>
             </Link>
             <Link to="/user">
                 <button>Back</button>
