@@ -9,7 +9,7 @@ function NewMatch() {
 
     useEffect(() => {
         const randomNumber = Math.floor(Math.random() * 100) + 1;
-        const date = moment().format("MMM Do YY");
+        const date = moment().format("YYYY MM DD");
         const matchDetails = {
             code: randomNumber,
             date: date
