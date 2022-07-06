@@ -18,6 +18,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import NewMatch from '../NewMatch/NewMatch';
+import JoinMatch from '../JoinMatch/JoinMatch';
+import Match from '../Match/Match';
 
 import './App.css';
 
@@ -55,6 +57,20 @@ function App() {
             path="/newMatch"
           >
             <NewMatch />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/joinMatch"
+          >
+            <JoinMatch />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/match"
+          >
+            <Match />
           </ProtectedRoute>
 
           <Route
