@@ -7,6 +7,21 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
+  console.log(`In match.router GET`)
+
+  const sqlQuery = `
+    SELECT "id" from "match"
+    ORDER BY "id" DESC LIMIT 1;
+  `
+  pool.query(sqlQuery)
+    .then(result => {
+        console.log('The highest match id is:', result.rows[0].id);
+        res.send(result.rows[0])
+    })
+    .catch(err => {
+        console.log(`Error in match.router GET`, err);
+        res.sendStatus(500);
+    })
 });
 
 /**
@@ -24,6 +39,10 @@ router.post('/', (req, res) => {
     pool.query(sqlQuery, [req.body.code, req.body.date])
         .then(result => {
             console.log('New Match Id:', result.rows[0].id);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
         })
 });
 

@@ -3,7 +3,11 @@ import { useDispatch , useSelector } from 'react-redux';
 import './Match.css';
 
 function Match() {
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+
+    },[])
 
 
     
