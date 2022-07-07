@@ -20,6 +20,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import NewMatch from '../NewMatch/NewMatch';
 import JoinMatch from '../JoinMatch/JoinMatch';
 import Match from '../Match/Match';
+import Lobby from '../Lobby/Lobby';
 
 import './App.css';
 
@@ -67,12 +68,36 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            path="/lobby/:code"
+          >
+            <Lobby />
+          </ProtectedRoute>
+{/* ************************************* */}
+          <ProtectedRoute
             exact
             path="/match"
           >
             <Match />
           </ProtectedRoute>
-
+          {/* <ProtectedRoute
+            exact
+            path="/match/player2"
+          >
+            <Match />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/match/player3"
+          >
+            <Match />
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact
+            path="/match/player4"
+          >
+            <Match />
+          </ProtectedRoute> */}
+{/* ************************************* */}
           <Route
             exact
             path="/login"

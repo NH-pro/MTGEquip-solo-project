@@ -1,28 +1,47 @@
-import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import moment from 'moment';
 
 
 function NewMatch() {
     const dispatch = useDispatch();
-    const nextNum = useSelector((store) => store.fetchNextMatchNumber)
+    const history = useHistory();
+
+    const matchNum = useSelector((store) => store.fetchNextMatchNumber);
+    const nextNum = matchNum + 1;
+    // Local state for new code
+    const [matchCode, setMatchCode] = useState('');
+    // String of usable characters for random code generator to use.
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    // Using moment to grab the date.
+    const date = moment().format("YYYY MM DD");
 
     useEffect(() => {
+        // Fetching the next match id number
         dispatch({
             type: 'FETCH_NEXT_MATCH_NUMBER'
         })
+        // Executing the random code gen function.
+        codeGen(10);
     },[]);
+
+    // Random code generator
+    const codeGen =(length) => {
+        let result = '';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        setMatchCode(result);
+    };
+
 
     // This creates a new match entry in the "match" table.
     const creatNewMatch = () => {
-        // Random number gen placeholder for a match code
-        const randomNumber = Math.floor(Math.random() * 100) + 1;
-        // Using moment to grab the date.
-        const date = moment().format("YYYY MM DD");
         // Combining random number and date into one object.
         const matchDetails = {
-            code: randomNumber,
+            code: matchCode,
             date: date
         };
 
@@ -32,16 +51,23 @@ function NewMatch() {
             payload: matchDetails
         })
 
+        dispatch({
+            type: 'ADD_PLAYER',
+            payload: {
+                matchId: nextNum
+            }
+        })
+
+        history.push(`/lobby/${nextNum}`);
     }
 
 
     return (
         <div className="newMatch_container">
             <h2>Next Match #: {nextNum}</h2>
-            <h3>Match Code:</h3>
-            <Link to="/match">
-                <button onClick={creatNewMatch}>Start</button>
-            </Link>
+            <h3>Date: {moment().format("MMM Do YYYY")}</h3>
+            <h3>Match Code: {matchCode}</h3>
+            <button onClick={() => creatNewMatch()}>Create</button>
             <Link to="/user">
                 <button>Back</button>
             </Link>

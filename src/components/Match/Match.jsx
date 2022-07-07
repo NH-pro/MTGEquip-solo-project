@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import './Match.css';
 
-function Match() {
+function Match({player}) {
     const dispatch = useDispatch();
 
     useEffect(() => {
 
     },[])
-
-
     
 
     return (

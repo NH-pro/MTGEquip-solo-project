@@ -14,7 +14,7 @@ function* fetchNextMatchNumber() {
     console.log(`in fetch next match number`)
     try {
         const highestNum = yield axios.get('/api/match');
-        const nextNum = highestNum.data.id + 1;
+        const nextNum = highestNum.data.id;
         yield put({
             type: 'SET_NEXT_MATCH_NUM',
             payload: nextNum
