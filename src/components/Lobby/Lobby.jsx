@@ -6,9 +6,11 @@ function Lobby() {
     const dispatch = useDispatch();
     let matchId = useParams();
 
-
     useEffect(() => {
-
+        dispatch({
+            type: 'FETCH_MATCH_USERS',
+            payload: matchId
+        })
     })
 
     return (

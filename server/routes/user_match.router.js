@@ -20,4 +20,13 @@ router.post('/', (req, res) => {
         })
 });
 
+router.get('/', (req, res) => {
+    console.log(` in user_match Router GET`);
+
+    const sqlQuery = `
+        SELECT * FROM "user_match_junction"
+        WHERE "match_id" = 
+    `
+})
+
 module.exports = router;

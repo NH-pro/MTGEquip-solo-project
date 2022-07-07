@@ -68,7 +68,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            path="/lobby/:code"
+            path="/lobby/:matchId"
           >
             <Lobby />
           </ProtectedRoute>
