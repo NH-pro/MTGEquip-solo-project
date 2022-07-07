@@ -1,0 +1,31 @@
+.opponents_info {
+    display: flex;
+    font-size: small;
+    text-align: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-bottom: 100px;
+}
+
+.user_info {
+    display: flex;
+    font-size: small;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.add_btn {
+    width: -webkit-fill-available;
+    height: 30px;
+}
+
+.sub_btn {
+    width: -webkit-fill-available;
+    height: 30px;
+}
+
+.cdmg {
+    margin: 0px 0px;
+}
