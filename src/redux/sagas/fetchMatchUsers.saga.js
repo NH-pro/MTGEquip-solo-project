@@ -5,9 +5,19 @@ import axios from 'axios';
 
 
 function* fetchUsers(action) {
-    console.log(`in fetchUsers, this is action.payload`, action.payload.matchId);
-    const matchUsers = yield axios.get(`/api/user_match/${action.payload.matchId}`);
-    console.log(`this is matchUsers`, matchUsers);
+    try{
+        console.log(`in fetchUsers, this is action.payload`, action.payload.matchId);
+        const matchUsers = yield axios.get(`/api/user_match/${action.payload.matchId}`);
+        console.log('this is matchUsers', matchUsers.data);
+        yield put({
+            type: 'SET_MATCH_USER_INFO',
+            payload: matchUsers.data
+        })
+    }
+    catch (err) {
+        console.log(`Error in fetchUsers`, err);
+    }
+
 }
 
 function* fetchMatchUsersSaga() {

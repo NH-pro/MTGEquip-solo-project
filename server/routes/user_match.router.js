@@ -20,13 +20,24 @@ router.post('/', (req, res) => {
         })
 });
 
-router.get('/', (req, res) => {
-    console.log(` in user_match Router GET`);
+router.get('/:matchId', (req, res) => {
+    console.log(` in user_match Router GET`, Number(req.params.matchId));
 
     const sqlQuery = `
-        SELECT * FROM "user_match_junction"
-        WHERE "match_id" = 
+        SELECT * FROM user_match_junction
+        JOIN "user"
+        ON user_match_junction.user_id = "user".id
+        WHERE match_id = $1;
     `
+    pool.query(sqlQuery, [Number(req.params.matchId)])
+        .then(result => {
+            console.log(`Success in user_match Router GET`, result.rows);
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
 })
 
 module.exports = router;
