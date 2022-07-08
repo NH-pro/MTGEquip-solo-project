@@ -23,7 +23,9 @@ function Lobby() {
                     <h3 key={player.junction_id}>{player.username}</h3>
                 )
             })}
-            <button>Launch Game</button>
+            {matchUsers.length >= 2 &&
+                <button onClick={() => launchMatch}>Launch Game</button>
+            }
         </>
     )
 }

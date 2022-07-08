@@ -53,6 +53,7 @@ router.post('/', (req, res) => {
     pool.query(sqlQuery, [req.body.code, req.body.date])
         .then(result => {
             console.log('New Match Id:', result.rows[0].id);
+            res.sendStatus(200);
         })
         .catch(err => {
             console.log(err);

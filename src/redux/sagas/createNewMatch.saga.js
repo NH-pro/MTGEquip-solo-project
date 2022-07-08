@@ -4,6 +4,12 @@ import axios from 'axios';
 function* createNewMatch(action) {
     try {
         yield axios.post('/api/match', action.payload);
+        yield put({
+            type: 'ADD_PLAYER',
+            payload: {
+                matchCode: action.payload.code
+            }
+        })
     }
     catch (err) {
         console.log(`Error in createMatch`, err);
