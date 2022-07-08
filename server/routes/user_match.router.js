@@ -30,6 +30,7 @@ router.post('/join', (req, res) => {
     pool.query(sqlQuery, [req.body.id, req.user.id])
         .then(result => {
             console.log('Success user_match Router POST');
+            res.sendStatus(200);
         })
         .catch(err => {
             console.log(err);
@@ -40,7 +41,10 @@ router.post('/join', (req, res) => {
 router.get('/:matchId', (req, res) => {
 
     const sqlQuery = `
-        SELECT * FROM user_match_junction
+        SELECT 
+            *,
+            user_match_junction.id AS junction_id
+        FROM user_match_junction
         JOIN "user"
         ON user_match_junction.user_id = "user".id
         WHERE match_id = $1;

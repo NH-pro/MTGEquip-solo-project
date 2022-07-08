@@ -19,7 +19,12 @@ function JoinMatch() {
     }
 
     const enter = () => {
-        history.push(`/lobby/${matchNum}`);
+        if (matchCode === '') {
+            return;
+        }
+        else {
+            history.push(`/lobby/${matchNum}`);
+        }
     }
 
     return (

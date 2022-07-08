@@ -20,7 +20,7 @@ function Lobby() {
 
             {matchUsers.map(player => {
                 return (
-                    <h3 key={player.id}>{player.username}</h3>
+                    <h3 key={player.junction_id}>{player.username}</h3>
                 )
             })}
             <button>Launch Game</button>
