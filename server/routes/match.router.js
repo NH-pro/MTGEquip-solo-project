@@ -24,6 +24,26 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/:matchCode', (req, res) => {
+  // GET route code here
+  console.log(`In match.router GET`, req.params.matchCode)
+
+  const sqlQuery = `
+    SELECT "id" from "match"
+    WHERE "code" = $1;
+  `;
+  pool.query(sqlQuery, [req.params.matchCode])
+    .then(result => {
+        console.log('this is the match id from Router params', result.rows[0].id)
+        res.send(result.rows[0]);
+    })
+    .catch(err => {
+        console.log(`Error in match.router GET`, err);
+        res.sendStatus(500);
+    })
+});
+
+
 /**
  * POST route template
  */

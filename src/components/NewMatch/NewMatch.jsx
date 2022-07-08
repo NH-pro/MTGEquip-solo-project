@@ -54,7 +54,7 @@ function NewMatch() {
         dispatch({
             type: 'ADD_PLAYER',
             payload: {
-                matchId: nextNum
+                matchCode
             }
         })
 
@@ -64,7 +64,7 @@ function NewMatch() {
 
     return (
         <div className="newMatch_container">
-            <h2>Next Match #: {nextNum}</h2>
+            <h2>Next Match: #{nextNum}</h2>
             <h3>Date: {moment().format("MMM Do YYYY")}</h3>
             <h3>Match Code: {matchCode}</h3>
             <button onClick={() => creatNewMatch()}>Create</button>

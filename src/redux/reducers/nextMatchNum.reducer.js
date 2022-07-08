@@ -1,4 +1,4 @@
-const fetchNextMatchNumReducer = (state = null, action) => {
+const fetchNextMatchNumReducer = (state = 0, action) => {
     switch (action.type) {
         case 'SET_NEXT_MATCH_NUM':
             return action.payload;
