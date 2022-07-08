@@ -1,10 +1,17 @@
+
 .opponents_info {
     display: flex;
     font-size: small;
     text-align: center;
     justify-content: space-evenly;
     flex-direction: row;
+    margin-top: 150px;
     margin-bottom: 100px;
+    width: 350px;
+}
+
+.opponent {
+    width: 33%;
 }
 
 .user_info {
@@ -14,6 +21,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    width: 350px;
 }
 
 .add_btn {

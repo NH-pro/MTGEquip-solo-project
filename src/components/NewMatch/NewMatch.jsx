@@ -50,24 +50,19 @@ function NewMatch() {
             type: 'CREATE_MATCH_DB',
             payload: matchDetails
         })
-
-        dispatch({
-            type: 'ADD_PLAYER',
-            payload: {
-                matchId: nextNum
-            }
-        })
-
-        history.push(`/lobby/${nextNum}`);
     }
 
+    const enter = () => {
+        history.push(`/lobby/${matchNum}`);
+    }
 
     return (
         <div className="newMatch_container">
-            <h2>Next Match #: {nextNum}</h2>
+            <h2>Next Match: #{nextNum}</h2>
             <h3>Date: {moment().format("MMM Do YYYY")}</h3>
             <h3>Match Code: {matchCode}</h3>
             <button onClick={() => creatNewMatch()}>Create</button>
+            <button onClick={enter}>Enter Lobby</button>
             <Link to="/user">
                 <button>Back</button>
             </Link>
