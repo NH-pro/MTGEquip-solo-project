@@ -75,7 +75,7 @@ function App() {
 {/* ************************************* */}
           <ProtectedRoute
             exact
-            path="/match"
+            path="/match/:matchId"
           >
             <Match />
           </ProtectedRoute>

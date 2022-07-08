@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 function Lobby() {
+    const history = useHistory();
     const dispatch = useDispatch();
     let matchId = useParams();
     const matchUsers = useSelector(store => store.userMatchReducer);
@@ -14,6 +15,10 @@ function Lobby() {
         })
     }, [])
 
+    const launchMatch = () => {
+        history.push(`/match/${matchId.matchId}`);
+    }
+
     return (
         <>
             <h2>Players in Lobby</h2>
@@ -24,7 +29,7 @@ function Lobby() {
                 )
             })}
             {matchUsers.length >= 2 &&
-                <button onClick={() => launchMatch}>Launch Game</button>
+                <button onClick={() => launchMatch()}>Launch Game</button>
             }
         </>
     )
