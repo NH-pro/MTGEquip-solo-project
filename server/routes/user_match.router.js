@@ -42,8 +42,13 @@ router.get('/:matchId', (req, res) => {
 
     const sqlQuery = `
         SELECT 
-            *,
-            user_match_junction.id AS junction_id
+            "user".id,
+            "user".username,
+            user_match_junction.id AS junction_id,
+            user_match_junction.match_id,
+            user_match_junction.user_id,
+            user_match_junction.hp,
+            user_match_junction.poison
         FROM user_match_junction
         JOIN "user"
         ON user_match_junction.user_id = "user".id

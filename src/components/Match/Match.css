@@ -5,8 +5,13 @@
     text-align: center;
     justify-content: space-evenly;
     flex-direction: row;
+    margin-top: 150px;
     margin-bottom: 100px;
     width: 350px;
+}
+
+.opponent {
+    width: 33%;
 }
 
 .user_info {
