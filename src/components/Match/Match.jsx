@@ -8,11 +8,17 @@ function Match() {
     const user = useSelector((store) => store.user);
     const matchUsers = useSelector(store => store.userMatchReducer);
     let matchId = useParams();
+    const commDamage = useSelector(store => store.commDamageReducer);
 
 
     useEffect(() => {
         dispatch({
             type: 'FETCH_MATCH_USERS',
+            payload: matchId
+        });
+
+        dispatch({
+            type: 'FETCH_COMMANDER_DMG_INFO',
             payload: matchId
         });
 
@@ -43,12 +49,18 @@ function Match() {
                                 <h2>{player.username}</h2>
                                 <h2>{player.hp}</h2>
                                 {matchUsers.map((opponent) => {
-                                    if(opponent.user_id === player.user_id) {
-                                        return;
-                                    }
-                                    else {
+                                    if(opponent.user_id !== player.user_id) {
                                         return (
-                                            <h4 key={opponent.user_id}>{opponent.username} cdmg: 0</h4>
+                                            <h4 key={opponent.user_id}>
+                                                {opponent.username} cdmg: 
+                                                {commDamage.map((comm) => {
+                                                    if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
+                                                        return (
+                                                            comm.amount
+                                                        )
+                                                    }
+                                                })}
+                                            </h4>
                                         )
                                     }
                                 })}

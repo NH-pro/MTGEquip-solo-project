@@ -3,16 +3,29 @@ import axios from 'axios';
 
 function* createCommJunc(action) {
     try {
-        console.log(`In createCommDamageJuncSaga, this is the action`, action.payload);
         yield axios.post('/api/commJunc', action.payload);
-        // yield
     }
     catch (err) {
         console.log(`Error in createCommJunc`, err);
     }
 }
 
+function* fetchCommJunc(action) {
+    try {
+        const commJuncInfo = yield axios.get(`/api/commJunc/${action.payload.matchId}`);
+        console.log('this is commJunInfo', commJuncInfo.data);
+        yield put({
+            type: 'SET_COMM_DMG_JUNC_INFO',
+            payload: commJuncInfo.data
+        })
+    }
+    catch (err) {
+        console.log('Error in fetchCommJunc', err);
+    }
+} 
+
 function* createCommDamageJuncSaga() {
     yield takeEvery('CREATE_COMMANDER_DMG_JUNCTIONS', createCommJunc);
+    yield takeEvery('FETCH_COMMANDER_DMG_INFO', fetchCommJunc);
 }
 export default createCommDamageJuncSaga;
