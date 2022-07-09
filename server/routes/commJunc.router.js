@@ -33,5 +33,21 @@ router.get('/:matchId', (req, res) => {
         })
 })
 
+router.put('/', (req, res) => {
+    const sqlQuery = `
+        UPDATE commander_damage_junction
+        SET amount = $1
+        WHERE id = $2;
+    `;
+    pool.query(sqlQuery, [req.body.amount, req.body.commId])
+        .then(result => {
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+})
+
 
 module.exports = router;

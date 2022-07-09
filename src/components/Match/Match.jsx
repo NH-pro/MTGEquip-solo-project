@@ -71,6 +71,30 @@ function Match() {
         })
     }
 
+    const addCommDmg = (commId, amount, matchId) => {
+        amount ++;
+        dispatch({
+            type: 'EDIT_COMM_DMG',
+            payload: {
+                commId,
+                amount,
+                matchId
+            }
+        })
+    }
+
+    const subCommDmg = (commId, amount, matchId) => {
+        amount --;
+        dispatch({
+            type: 'EDIT_COMM_DMG',
+            payload: {
+                commId,
+                amount,
+                matchId
+            }
+        })
+    }
+
     return (
         <>
             <div className='opponents_info'>
@@ -84,8 +108,7 @@ function Match() {
                                     if(opponent.user_id !== player.user_id) {
                                         return (
                                             <h4 key={opponent.user_id}>
-                                                {opponent.username} cdmg: 
-                                                {commDamage.map((comm) => {
+                                                {opponent.username} cdmg: {commDamage.map((comm) => {
                                                     if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
                                                         return (
                                                             comm.amount
@@ -101,11 +124,11 @@ function Match() {
                                     if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
                                         return (
                                             <div key={comm.id}>
-                                                <button className='add_btn'>+</button>
+                                                <button onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)} className='add_btn'>+</button>
                                                 <br/>
-                                                <h3 className='cdmg'>{player.username} cdmg: 0</h3>
+                                                <h3 className='cdmg'>{player.username} cdmg: {comm.amount}</h3>
                                                 <br/>
-                                                <button className='sub_btn'>-</button>
+                                                <button onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)} className='sub_btn'>-</button>
                                             </div>
                                         )
                                     }

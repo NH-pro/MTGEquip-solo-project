@@ -21,10 +21,24 @@ function* fetchCommJunc(action) {
     catch (err) {
         console.log('Error in fetchCommJunc', err);
     }
-} 
+}
+
+function* editCommDmg(action) {
+    try {
+        yield axios.put('/api/commJunc', action.payload);
+        yield put({
+            type: 'FETCH_COMMANDER_DMG_INFO',
+            payload: action.payload
+        })
+    }
+    catch (err) {
+        console.log('Error in editCommDmg', err);
+    }
+}
 
 function* createCommDamageJuncSaga() {
     yield takeEvery('CREATE_COMMANDER_DMG_JUNCTIONS', createCommJunc);
     yield takeEvery('FETCH_COMMANDER_DMG_INFO', fetchCommJunc);
+    yield takeEvery('EDIT_COMM_DMG', editCommDmg);
 }
 export default createCommDamageJuncSaga;

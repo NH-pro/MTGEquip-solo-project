@@ -27,7 +27,6 @@ router.put('/addPoison', (req, res) => {
     `;
     pool.query(sqlQuery, [req.body.playerPoison, req.body.junctionId])
         .then(result => {
-            console.log(`Success user_match Router PUT`);
             res.sendStatus(200);
         })
         .catch(err => {
