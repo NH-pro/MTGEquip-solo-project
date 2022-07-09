@@ -6,12 +6,14 @@ import axios from 'axios';
 
 function* fetchUsers(action) {
     try{
-        console.log(`in fetchUsers, this is action.payload`, action.payload.matchId);
         const matchUsers = yield axios.get(`/api/user_match/${action.payload.matchId}`);
-        console.log('this is matchUsers', matchUsers.data);
         yield put({
             type: 'SET_MATCH_PLAYER_INFO',
             payload: matchUsers.data
+        })
+        yield put({
+            type: 'FETCH_COMMANDER_DMG_INFO',
+            payload: action.payload
         })
     }
     catch (err) {

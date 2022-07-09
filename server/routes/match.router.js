@@ -43,16 +43,13 @@ router.get('/:matchCode', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
-    console.log(req.body);
-
     const sqlQuery = `
         INSERT INTO "match" ("code", "date")
         VALUES ($1, $2)
         RETURNING "id";
-    `
+    `;
     pool.query(sqlQuery, [req.body.code, req.body.date])
         .then(result => {
-            console.log('New Match Id:', result.rows[0].id);
             res.sendStatus(200);
         })
         .catch(err => {
@@ -60,5 +57,20 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         })
 });
+
+router.get('/id/:matchId', (req, res) => {
+  const sqlQuery = `
+    SELECT * FROM "match"
+    WHERE "id" = $1;
+  `;
+  pool.query(sqlQuery, [req.params.matchId])
+    .then(result => {
+      res.send(result.rows[0])
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+})
 
 module.exports = router;

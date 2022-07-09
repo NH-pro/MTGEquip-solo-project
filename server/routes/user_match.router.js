@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 
     pool.query(sqlQuery, [req.body.matchId, req.user.id])
         .then(result => {
-            console.log('Success user_match Router POST')
+            res.sendStatus(200);
         })
         .catch(err => {
             console.log(err);
@@ -20,8 +20,6 @@ router.post('/', (req, res) => {
 });
 
 router.post('/join', (req, res) => {
-    console.log('this is req.body', req.body)
-
     const sqlQuery = `
         INSERT INTO "user_match_junction" ("match_id", "user_id", "hp", "poison")
         VALUES ($1, $2, 40, 0);
@@ -29,7 +27,6 @@ router.post('/join', (req, res) => {
 
     pool.query(sqlQuery, [req.body.id, req.user.id])
         .then(result => {
-            console.log('Success user_match Router POST');
             res.sendStatus(200);
         })
         .catch(err => {

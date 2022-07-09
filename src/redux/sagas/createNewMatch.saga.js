@@ -20,7 +20,6 @@ function* fetchNextMatchNumber() {
     try {
         const highestNum = yield axios.get('/api/match');
         const nextNum = highestNum.data.id;
-        console.log('this is nextNum',nextNum)
         yield put({
             type: 'SET_NEXT_MATCH_NUM',
             payload: nextNum
@@ -31,9 +30,23 @@ function* fetchNextMatchNumber() {
     }
 }
 
+function* fetchMatchInfo(action) {
+    try {
+        const matchInfo = yield axios.get(`/api/match/id/${action.payload.matchId}`)
+        yield put({
+            type: "SET_MATCH_INFO",
+            payload: matchInfo.data
+        })
+    }
+    catch (err) {
+        console.log('Error in fetchMatchInfo', err);
+    }
+}
+
 function* newMatchSaga() {
     yield takeEvery('CREATE_MATCH_DB', createNewMatch);
     yield takeEvery('FETCH_NEXT_MATCH_NUMBER', fetchNextMatchNumber)
+    yield takeEvery('FETCH_MATCH_INFO', fetchMatchInfo);
 }
 
 export default newMatchSaga;
