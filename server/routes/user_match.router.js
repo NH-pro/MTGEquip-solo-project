@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 
     pool.query(sqlQuery, [req.body.matchId, req.user.id])
         .then(result => {
-            console.log('Success user_match Router POST')
+            res.sendStatus(200);
         })
         .catch(err => {
             console.log(err);

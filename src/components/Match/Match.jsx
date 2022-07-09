@@ -75,10 +75,7 @@ function Match() {
         <>
             <div className='opponents_info'>
                 {matchUsers.map((player) => {
-                    if(player.user_id === user.id) {
-                        return;
-                    }
-                    else {
+                    if(player.user_id !== user.id) {
                         return (
                             <div className='opponent' key={player.user_id}>
                                 <h2>{player.username}</h2>
@@ -100,13 +97,19 @@ function Match() {
                                     }
                                 })}
                                 <h4>posion: {player.poison}</h4>
-                                <div>
-                                    <button className='add_btn'>+</button>
-                                    <br/>
-                                    <h3 className='cdmg'>{player.username} cdmg: 0</h3>
-                                    <br/>
-                                    <button className='sub_btn'>-</button>
-                                </div>
+                                {commDamage.map((comm) => {
+                                    if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
+                                        return (
+                                            <div key={comm.id}>
+                                                <button className='add_btn'>+</button>
+                                                <br/>
+                                                <h3 className='cdmg'>{player.username} cdmg: 0</h3>
+                                                <br/>
+                                                <button className='sub_btn'>-</button>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         );
                     }
