@@ -13,7 +13,6 @@ function* createCommJunc(action) {
 function* fetchCommJunc(action) {
     try {
         const commJuncInfo = yield axios.get(`/api/commJunc/${action.payload.matchId}`);
-        console.log('this is commJunInfo', commJuncInfo.data);
         yield put({
             type: 'SET_COMM_DMG_JUNC_INFO',
             payload: commJuncInfo.data

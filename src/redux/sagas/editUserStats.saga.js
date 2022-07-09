@@ -14,7 +14,6 @@ function* editHp(action) {
     }
 }
 function* editPoison(action) {
-    console.log('in editHp this is action', action.payload.matchId);
     try {
         yield axios.put('/api/userStats/addPoison', action.payload);
         yield put({
