@@ -6,6 +6,7 @@ import newMatchSaga from './createNewMatch.saga';
 import addPlayerSaga from './addPlayer.saga';
 import fetchMatchUsersSaga from './fetchMatchUsers.saga';
 import editUserStatsSaga from './editUserStats.saga';
+import createCommDamageJuncSaga from './createCommDamageJunc.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     newMatchSaga(),
     addPlayerSaga(),
     fetchMatchUsersSaga(),
-    editUserStatsSaga()
+    editUserStatsSaga(),
+    createCommDamageJuncSaga()
   ]);
 }

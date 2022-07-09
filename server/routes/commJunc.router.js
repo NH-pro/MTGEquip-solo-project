@@ -2,15 +2,15 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.put('/addHp', (req, res) => {
+router.post('/', (req, res) => {
+    console.log('In commJunc Router, this is req.body', req.body);
+
     const sqlQuery = `
-        UPDATE user_match_junction
-        SET hp = $1
-        WHERE id = $2;
+        INSERT INTO "commander_damage_junction" ("match_id", "attacker_id", "defender_id", "amount")
+        VALUES ($1, $2, $3, 0)
     `;
-    pool.query(sqlQuery, [req.body.playerHp, req.body.junctionId])
+    pool.query(sqlQuery, [req.body.matchId, req.body.attackerId, req.body.defenderId])
         .then(result => {
-            console.log(`Success user_match Router PUT`);
             res.sendStatus(200);
         })
         .catch(err => {
@@ -18,5 +18,6 @@ router.put('/addHp', (req, res) => {
             res.sendStatus(500);
         })
 });
+
 
 module.exports = router;
