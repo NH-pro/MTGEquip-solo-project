@@ -41,7 +41,7 @@ function Match({player}) {
                         return (
                             <div className='opponent' key={player.user_id}>
                                 <h2>{player.username}</h2>
-                                <h2>40 Life</h2>
+                                <h2>{player.hp}</h2>
                                 {matchUsers.map((opponent) => {
                                     if(opponent.user_id === player.user_id) {
                                         return;
