@@ -58,4 +58,19 @@ router.post('/', (req, res) => {
         })
 });
 
+router.get('/id/:matchId', (req, res) => {
+  const sqlQuery = `
+    SELECT * FROM "match"
+    WHERE "id" = $1;
+  `;
+  pool.query(sqlQuery, [req.params.matchId])
+    .then(result => {
+      res.send(result.rows[0])
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;
