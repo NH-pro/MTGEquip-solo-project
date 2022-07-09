@@ -35,6 +35,41 @@ function Match() {
             }
         })
     }
+    const subLife = (junctionId, playerHp, matchId) => {
+        playerHp --;
+        dispatch({
+            type: 'EDIT_USER_HP',
+            payload: {
+                junctionId,
+                playerHp,
+                matchId
+            }
+        })
+    }
+
+    const addPoison = (junctionId, playerPoison, matchId) => {
+        playerPoison ++;
+        dispatch({
+            type: 'EDIT_USER_POISON',
+            payload: {
+                junctionId,
+                playerPoison,
+                matchId
+            }
+        })
+    }
+
+    const subPoison = (junctionId, playerPoison, matchId) => {
+        playerPoison --;
+        dispatch({
+            type: 'EDIT_USER_POISON',
+            payload: {
+                junctionId,
+                playerPoison,
+                matchId
+            }
+        })
+    }
 
     return (
         <>
@@ -83,23 +118,38 @@ function Match() {
                             <div key={player.user_id} className='user_info'>
                                 <h2>{player.username}</h2>
                                 <div>
-                                    <button className='add_btn'>+</button>
+                                    <button
+                                        className='add_btn'
+                                        onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                    >
+                                    +
+                                    </button>
                                     <br/>
                                     <h3 >Poison: {player.poison}</h3>
                                     <br/>
-                                    <button className='sub_btn'>-</button>
+                                    <button
+                                        className='sub_btn'
+                                        onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
+                                    >
+                                        -
+                                    </button>
                                 </div>
                                 <div>
                                     <button
                                         className='add_life_btn'
                                         onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
                                     >
-                                        +
+                                    +
                                     </button>
                                     <br/>
                                     <h2 className='player_life'>{player.hp} Life</h2>
                                     <br/>
-                                    <button className='sub_life_btn'>-</button>
+                                    <button 
+                                        className='sub_life_btn'
+                                        onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
+                                    >
+                                        -
+                                    </button>
                                 </div>
                             </div>
                         )
