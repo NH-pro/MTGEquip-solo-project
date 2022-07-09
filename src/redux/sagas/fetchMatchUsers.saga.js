@@ -11,6 +11,10 @@ function* fetchUsers(action) {
             type: 'SET_MATCH_PLAYER_INFO',
             payload: matchUsers.data
         })
+        yield put({
+            type: 'FETCH_COMMANDER_DMG_INFO',
+            payload: action.payload
+        })
     }
     catch (err) {
         console.log(`Error in fetchUsers`, err);

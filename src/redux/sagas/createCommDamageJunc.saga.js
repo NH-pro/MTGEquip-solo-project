@@ -17,6 +17,7 @@ function* fetchCommJunc(action) {
             type: 'SET_COMM_DMG_JUNC_INFO',
             payload: commJuncInfo.data
         })
+        
     }
     catch (err) {
         console.log('Error in fetchCommJunc', err);
@@ -30,6 +31,10 @@ function* editCommDmg(action) {
             type: 'FETCH_COMMANDER_DMG_INFO',
             payload: action.payload
         })
+        yield put({
+            type: 'FETCH_MATCH_USERS',
+            payload: action.payload
+        });
     }
     catch (err) {
         console.log('Error in editCommDmg', err);
