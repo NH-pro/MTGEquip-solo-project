@@ -3,7 +3,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './Match.css';
 
-function Match({player}) {
+function Match() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const matchUsers = useSelector(store => store.userMatchReducer);

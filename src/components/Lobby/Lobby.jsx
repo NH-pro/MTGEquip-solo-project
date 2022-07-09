@@ -16,6 +16,31 @@ function Lobby() {
     }, [])
 
     const launchMatch = () => {
+        // Loop through every player in the match.
+        for (let player of matchUsers) {
+            // Loop through every player in the match again.
+            for (let oppPlayer of matchUsers) {
+                // Exclude the original player from the first loop.
+                if(player.user_id !== oppPlayer.user_id) {
+                    // Info being sent with dispatch.
+                    let commanderDamageJunc = {
+                        matchId: player.match_id,
+                        attackerId: oppPlayer.user_id,
+                        defenderId: player.user_id
+                    };
+                    // Dispatch to make new commander_damage_junction table rows
+                    //  for each player and their opponent.                   
+                    dispatch({
+                        type: 'CREATE_COMMANDER_DMG_JUNCTIONS',
+                        payload: commanderDamageJunc
+                    })
+                }
+
+
+            }
+        }
+
+
         history.push(`/match/${matchId.matchId}`);
     }
 

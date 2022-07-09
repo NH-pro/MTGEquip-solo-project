@@ -79,24 +79,6 @@ function App() {
           >
             <Match />
           </ProtectedRoute>
-          {/* <ProtectedRoute
-            exact
-            path="/match/player2"
-          >
-            <Match />
-          </ProtectedRoute>
-          <ProtectedRoute
-            exact
-            path="/match/player3"
-          >
-            <Match />
-          </ProtectedRoute>
-          <ProtectedRoute
-            exact
-            path="/match/player4"
-          >
-            <Match />
-          </ProtectedRoute> */}
 {/* ************************************* */}
           <Route
             exact
