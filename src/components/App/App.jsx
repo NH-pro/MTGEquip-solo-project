@@ -22,6 +22,7 @@ import JoinMatch from '../JoinMatch/JoinMatch';
 import Match from '../Match/Match';
 import Lobby from '../Lobby/Lobby';
 import MatchMenu from '../MatchMenu/MatchMenu';
+import MatchHistory from '../MatchHistory/MatchHistory';
 
 import './App.css';
 
@@ -86,6 +87,13 @@ function App() {
             path="/matchMenu/:matchId"
           >
             <MatchMenu />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/matchHistory"
+          >
+            <MatchHistory />
           </ProtectedRoute>
 
           <Route

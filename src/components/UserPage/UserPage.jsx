@@ -19,6 +19,10 @@ function UserPage() {
           <button>Join Match</button>
         </Link>
         <br/>
+        <Link to="/matchHistory">
+          <button>History</button>
+        </Link>
+        <br/>
         <LogOutButton className="btn" />
       </div>
   );
