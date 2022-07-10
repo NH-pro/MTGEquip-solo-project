@@ -5,7 +5,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
     const sqlQuery = `
         INSERT INTO "commander_damage_junction" ("match_id", "attacker_id", "defender_id", "amount")
-        VALUES ($1, $2, $3, 0)
+        VALUES ($1, $2, $3, 0);
     `;
     pool.query(sqlQuery, [req.body.matchId, req.body.attackerId, req.body.defenderId])
         .then(result => {

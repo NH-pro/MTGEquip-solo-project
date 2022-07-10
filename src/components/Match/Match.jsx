@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './Match.css';
 
 function Match() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const matchUsers = useSelector(store => store.userMatchReducer);
-    let matchId = useParams();
+    const matchId = useParams();
     const commDamage = useSelector(store => store.commDamageReducer);
-
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({
@@ -23,6 +24,11 @@ function Match() {
         });
 
     },[])
+
+
+    const menu = () => {
+        history.push(`/matchMenu/${matchId.matchId}`);
+    }
 
     const addLife = (junctionId, playerHp, matchId) => {
         playerHp ++;
@@ -138,52 +144,50 @@ function Match() {
                     }
                 })} 
             </div>
-                {matchUsers.map((player) => {
-                    if(player.user_id === user.id) {
-                        return (
-                            <div key={player.user_id} className='user_info'>
-                                <h2>{player.username}</h2>
-                                <div>
-                                    <button
-                                        className='add_btn'
-                                        onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
-                                    >
-                                    +
-                                    </button>
-                                    <br/>
-                                    <h3 >Poison: {player.poison}</h3>
-                                    <br/>
-                                    <button
-                                        className='sub_btn'
-                                        onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
-                                    >
-                                        -
-                                    </button>
-                                </div>
-                                <div>
-                                    <button
-                                        className='add_life_btn'
-                                        onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
-                                    >
-                                    +
-                                    </button>
-                                    <br/>
-                                    <h2 className='player_life'>{player.hp} Life</h2>
-                                    <br/>
-                                    <button 
-                                        className='sub_life_btn'
-                                        onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
-                                    >
-                                        -
-                                    </button>
-                                </div>
+            {matchUsers.map((player) => {
+                if(player.user_id === user.id) {
+                    return (
+                        <div key={player.user_id} className='user_info'>
+                            <h2>{player.username}</h2>
+                            <div>
+                                <button
+                                    className='add_btn'
+                                    onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                >
+                                +
+                                </button>
+                                <br/>
+                                <h3 >Poison: {player.poison}</h3>
+                                <br/>
+                                <button
+                                    className='sub_btn'
+                                    onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
+                                >
+                                    -
+                                </button>
                             </div>
-                        )
-                    }
-                    else {
-                        return;
-                    }
-                })}   
+                            <div>
+                                <button
+                                    className='add_life_btn'
+                                    onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
+                                >
+                                +
+                                </button>
+                                <br/>
+                                <h2 className='player_life'>{player.hp} Life</h2>
+                                <br/>
+                                <button 
+                                    className='sub_life_btn'
+                                    onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
+                                >
+                                    -
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            })}
+            <button onClick={() => menu()} className='match_menu'>Menu</button>   
         </>
     )
 };

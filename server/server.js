@@ -13,6 +13,7 @@ const matchRouter = require('./routes/match.router'); // NEW STUFF
 const userMatchRouter = require('./routes/user_match.router'); // NEW STUFF
 const userStatsRouter = require('./routes/userStats.router');
 const commJuncRouter = require('./routes/commJunc.router');
+const notesRouter = require('./routes/notes.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/match',matchRouter); // NEW STUFF
 app.use('/api/user_match',userMatchRouter); // NEW STUFF
 app.use('/api/userStats', userStatsRouter);
 app.use('/api/commJunc', commJuncRouter);
+app.use('/api/notes', notesRouter);
 
 // Serve static files
 app.use(express.static('build'));

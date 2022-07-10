@@ -21,6 +21,8 @@ import NewMatch from '../NewMatch/NewMatch';
 import JoinMatch from '../JoinMatch/JoinMatch';
 import Match from '../Match/Match';
 import Lobby from '../Lobby/Lobby';
+import MatchMenu from '../MatchMenu/MatchMenu';
+import MatchHistory from '../MatchHistory/MatchHistory';
 
 import './App.css';
 
@@ -72,14 +74,28 @@ function App() {
           >
             <Lobby />
           </ProtectedRoute>
-{/* ************************************* */}
+
           <ProtectedRoute
             exact
             path="/match/:matchId"
           >
             <Match />
           </ProtectedRoute>
-{/* ************************************* */}
+
+          <ProtectedRoute
+            exact
+            path="/matchMenu/:matchId"
+          >
+            <MatchMenu />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/matchHistory"
+          >
+            <MatchHistory />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
