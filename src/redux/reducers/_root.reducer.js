@@ -5,6 +5,7 @@ import fetchNextMatchNumber from './nextMatchNum.reducer';
 import userMatchReducer from './user_match.reducer';
 import commDamageReducer from './commDamage.reducer';
 import matchReducer from './match.reducer';
+import notesReducers from './notes.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   fetchNextMatchNumber,
   userMatchReducer,
   commDamageReducer,
-  matchReducer
+  matchReducer,
+  notesReducers
 });
 
 export default rootReducer;

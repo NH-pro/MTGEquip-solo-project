@@ -16,6 +16,7 @@ function NewMatch() {
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     // Using moment to grab the date.
     const date = moment().format("YYYY MM DD");
+    const user = useSelector((store) => store.user);
 
     useEffect(() => {
         // Fetching the next match id number
@@ -42,7 +43,8 @@ function NewMatch() {
         // Combining random number and date into one object.
         const matchDetails = {
             code: matchCode,
-            date: date
+            date: date,
+            creator: user.id
         };
 
         // Dispatching new match details.

@@ -44,11 +44,11 @@ router.get('/:matchCode', (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
     const sqlQuery = `
-        INSERT INTO "match" ("code", "date")
-        VALUES ($1, $2)
+        INSERT INTO "match" ("code", "date", "creator_id")
+        VALUES ($1, $2, $3)
         RETURNING "id";
     `;
-    pool.query(sqlQuery, [req.body.code, req.body.date])
+    pool.query(sqlQuery, [req.body.code, req.body.date, req.body.creator])
         .then(result => {
             res.sendStatus(200);
         })
