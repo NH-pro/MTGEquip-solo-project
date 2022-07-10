@@ -5,9 +5,9 @@
     text-align: center;
     justify-content: space-evenly;
     flex-direction: row;
-    margin-top: 150px;
-    margin-bottom: 100px;
-    width: 350px;
+    margin-top: 20px;
+    margin-bottom: 55px;
+    flex-wrap: wrap;
 }
 
 .opponent {
