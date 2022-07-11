@@ -103,6 +103,8 @@ function Match() {
 
     return (
         <>
+        {matchUsers &&
+            <div>
             <div className='opponents_info'>
                 {matchUsers.map((player) => {
                     if(player.user_id !== user.id) {
@@ -188,6 +190,8 @@ function Match() {
                 }
             })}
             <button onClick={() => menu()} className='match_menu'>Menu</button>   
+        </div>
+        }
         </>
     )
 };

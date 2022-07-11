@@ -50,15 +50,18 @@ function Lobby() {
 
     return (
         <>
-            <h2>Players in Lobby</h2>
-
-            {matchUsers.map(player => {
-                return (
-                    <h3 key={player.junction_id}>{player.username}</h3>
-                )
-            })}
-            {matchUsers.length >= 2 &&
-                <button onClick={() => launchMatch()}>Launch Game</button>
+            {matchUsers &&
+                <div>
+                    <h2>Players in Lobby</h2>
+                    {matchUsers.map(player => {
+                        return (
+                            <h3 key={player.junction_id}>{player.username}</h3>
+                        )
+                    })}
+                    {matchUsers.length >= 2 &&
+                        <button onClick={() => launchMatch()}>Launch Game</button>
+                    }
+                </div>
             }
         </>
     )

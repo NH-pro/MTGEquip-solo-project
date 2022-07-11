@@ -16,6 +16,7 @@ function JoinMatch() {
                 matchCode
             }
         })
+        
     }
 
     const enter = () => {

@@ -25,6 +25,7 @@ function MatchHistory() {
 
     return (
         <>
+            <button  onClick={() => history.goBack()}>Back</button>
             {actualHistory &&
                 <div className="history_list">
                     {actualHistory.matchHistory.map((match) => {

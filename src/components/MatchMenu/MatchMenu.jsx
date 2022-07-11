@@ -45,7 +45,9 @@ function MatchMenu() {
 
     return (
         <>
-            <h2>Match #{matchInfo.id}</h2>
+            {matchInfo &&
+                <h2>Match #{matchInfo.id}</h2>
+            }
             <textarea onChange={(event) => setNote(event.target.value)} rows="6" cols="40"/>
             <br/>
             <button  onClick={() => history.goBack()}>Back</button>

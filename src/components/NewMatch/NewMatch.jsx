@@ -53,7 +53,7 @@ function NewMatch() {
             payload: matchDetails
         })
 
-        history.push(`/lobby/${matchNum}`);
+        history.push(`/lobby/${nextNum}`);
     }
 
     // const enter = () => {
