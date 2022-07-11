@@ -9,6 +9,16 @@ const matchHistory = (state = null, action) => {
     }
 };
 
+const matchNotes = (state = null, action) => {
+    switch (action.type) {
+        case 'SET_MATCH_NOTES':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
-    matchHistory
+    matchHistory,
+    matchNotes
 });

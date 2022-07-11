@@ -12,7 +12,11 @@ function* createNote(action) {
 
 function* fetchMatchNotes(action) {
     try {
-        yield axios.get(`/api/notes/:${action.payload}`);
+        const notes = yield axios.get(`/api/notes/${action.payload.matchId}`);
+        yield put({
+            type: 'SET_MATCH_NOTES',
+            payload: notes.data
+        })
     }
     catch (err) {
         console.log('Error in fetchMatchHistory', err);
@@ -34,10 +38,17 @@ function* fetchMatchHistory(action) {
     }
 }
 
+// function* deleteNote(action) {
+//     try {
+//         const
+//     }
+// }
+
 function* createNoteSaga() {
     yield takeEvery('CREATE_MATCH_NOTE', createNote);
     yield takeEvery('FETCH_MATCH_NOTES', fetchMatchNotes);
     yield takeEvery('FETCH_MATCH_HISTORY', fetchMatchHistory);
+    // yield takeEvery('DELETE_NOTE', deleteNote);
 }
 
 export default createNoteSaga;
