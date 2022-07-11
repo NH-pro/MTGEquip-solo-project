@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 
 function MatchMenu() {
@@ -45,15 +47,8 @@ function MatchMenu() {
 
     return (
         <>
-            {matchInfo &&
-                <h2>Match #{matchInfo.id}</h2>
-            }
-            <textarea 
-                onChange={(event) => setNote(event.target.value)}
-                rows="10"
-                cols="40"
-                maxLength="400"
-            />
+            <h2>Match #{matchInfo.id}</h2>
+            <TextField multiline onChange={(event) => setNote(event.target.value)}/>
             <br/>
             <button  onClick={() => history.goBack()}>Back</button>
             <br/>

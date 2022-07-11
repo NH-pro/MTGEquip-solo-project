@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { TextField, Button } from '@mui/material';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -26,7 +28,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2>Login to MTG Equip</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,8 +36,9 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          <TextField
+            variant="outlined"
+            label="username"
             type="text"
             name="username"
             required
@@ -44,10 +47,12 @@ function LoginForm() {
           />
         </label>
       </div>
+      <br/>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          <TextField
+            variant="outlined"
+            label="password"
             type="password"
             name="password"
             required
@@ -56,8 +61,9 @@ function LoginForm() {
           />
         </label>
       </div>
+      <br/>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button variant="contained" type="submit" name="submit" value="Log In">Login</Button>
       </div>
     </form>
   );
