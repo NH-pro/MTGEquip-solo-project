@@ -18,6 +18,13 @@ function HistoryNotes() {
         })
     }, [])
 
+    // function deleteNote(noteId) {
+    //     dispatch({
+    //         type: 'DELETE_NOTE',
+    //         payload: noteId
+    //     });
+    // }
+
     return (
         <>
             {notes && 
@@ -25,10 +32,19 @@ function HistoryNotes() {
                     {notes.map((singleNote) => {
                         return (
                             <div key={singleNote.id}>
-                                <p>{singleNote.note}</p>
+                                <textarea
+                                    readOnly
+                                    defaultValue={singleNote.note}
+                                    rows="10"
+                                    cols="40"
+                                    maxLength="400"
+                                />
+                                {/* <button onClick={() => deleteNote(singleNote.id)} >Delete Note</button> */}
                             </div>
                         )
                     })}
+                    <br/>
+                    <button>Add Note</button>
                 </div>
             }
             <button  onClick={() => history.goBack()}>Back</button>

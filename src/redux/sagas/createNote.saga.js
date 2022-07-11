@@ -38,10 +38,17 @@ function* fetchMatchHistory(action) {
     }
 }
 
+// function* deleteNote(action) {
+//     try {
+//         const
+//     }
+// }
+
 function* createNoteSaga() {
     yield takeEvery('CREATE_MATCH_NOTE', createNote);
     yield takeEvery('FETCH_MATCH_NOTES', fetchMatchNotes);
     yield takeEvery('FETCH_MATCH_HISTORY', fetchMatchHistory);
+    // yield takeEvery('DELETE_NOTE', deleteNote);
 }
 
 export default createNoteSaga;
