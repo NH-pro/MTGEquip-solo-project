@@ -23,6 +23,7 @@ import Match from '../Match/Match';
 import Lobby from '../Lobby/Lobby';
 import MatchMenu from '../MatchMenu/MatchMenu';
 import MatchHistory from '../MatchHistory/MatchHistory';
+import HistoryNotes from '../HistoryNotes/HistoryNotes';
 
 import './App.css';
 
@@ -94,6 +95,13 @@ function App() {
             path="/matchHistory"
           >
             <MatchHistory />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/historyDetails/:matchId"
+          >
+            <HistoryNotes />
           </ProtectedRoute>
 
           <Route

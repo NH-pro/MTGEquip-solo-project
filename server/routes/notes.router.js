@@ -17,23 +17,33 @@ router.post ('/', (req, res) => {
         })
 })
 
-// router.get('/:userId', (req, res) => {
-//     const sqlQuery = `
-//         SELECT
-//             notes.id AS notes_id,
-//             notes.user_match_id,
-//             notes.note
-//         FROM notes
-//         JOIN user_match_junction
-//             ON notes.user_match_id = user_match_junction.id
-//         JOIN "user"
-//             ON user_match_junction.user_id = "user".id
-//         WHERE "user".id = $1
-//         GROUP BY notes_id;
-//     `;
+router.get('/:matchId', (req, res) => {
+    const sqlQuery = `
+        SELECT
+            notes.id,
+            notes.user_match_id,
+            notes.note
+        FROM notes
+        JOIN user_match_junction
+            ON notes.user_match_id = user_match_junction.id
+        JOIN "user"
+            ON user_match_junction.user_id = "user".id
+        JOIN match
+            ON user_match_junction.match_id = match.id
+        WHERE "user".id = $1
+        AND match.id = $2
+        GROUP BY notes.id;
+    `;
+    pool.query(sqlQuery, [req.user.id, req.params.matchId])
+        .then(result => {
+            res.send(result.rows)
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
 
-    
-// })
+})
 
 router.get('/userHistory/:userId', (req, res) => {
     const sqlQuery = `

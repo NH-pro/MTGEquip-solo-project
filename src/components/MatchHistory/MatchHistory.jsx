@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
+import moment from 'moment';
+import './MatchHistory.css'
 
 function MatchHistory() {
     const history = useHistory();
@@ -15,22 +17,21 @@ function MatchHistory() {
                 user: user.id
             }
         })
-
-        // dispatch({
-        //     type: 'FETCH_MATCH_NOTES',
-        //     payload: user.id
-        // })
     },[])
+
+    function matchNotes(matchId) {
+        history.push(`/historyDetails/${matchId}`)
+    }
 
     return (
         <>
             {actualHistory &&
-                <div>
+                <div className="history_list">
                     {actualHistory.matchHistory.map((match) => {
                         return (
-                            <div key={match.id}>
-                                <h2>{match.id}</h2>
-                                <h2>{match.date}</h2>
+                            <div key={match.id} onClick={() => matchNotes(match.id)} className="history_match" >
+                                <h2>Match Id #{match.id}</h2>
+                                <h2>{moment(match.date).format('MM/DD/YYYY')}</h2>
                             </div>
                         )
                     })}

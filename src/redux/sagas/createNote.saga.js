@@ -12,7 +12,11 @@ function* createNote(action) {
 
 function* fetchMatchNotes(action) {
     try {
-        yield axios.get(`/api/notes/:${action.payload}`);
+        const notes = yield axios.get(`/api/notes/${action.payload.matchId}`);
+        yield put({
+            type: 'SET_MATCH_NOTES',
+            payload: notes.data
+        })
     }
     catch (err) {
         console.log('Error in fetchMatchHistory', err);
