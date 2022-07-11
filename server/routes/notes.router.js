@@ -2,6 +2,21 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+router.delete('/:noteId', (req, res) => {
+    const sqlQuery = `
+        DELETE FROM notes
+        WHERE id = $1;
+    `;
+    pool.query(sqlQuery, [req.params.noteId])
+        .then(result => {
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+})
+
 router.post ('/', (req, res) => {
     const sqlQuery = `
         INSERT INTO "notes" ("user_match_id", "note")
