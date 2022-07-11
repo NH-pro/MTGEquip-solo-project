@@ -4,6 +4,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { TextField } from '@mui/material';
+import { Grid, Stack, Button } from '@mui/material';
 
 
 function MatchMenu() {
@@ -47,12 +48,43 @@ function MatchMenu() {
 
     return (
         <>
-            <h2>Match #{matchInfo.id}</h2>
-            <TextField multiline onChange={(event) => setNote(event.target.value)}/>
-            <br/>
-            <button  onClick={() => history.goBack()}>Back</button>
-            <br/>
-            <button onClick={() => submitAndExit()}>Submit</button>
+            {matchInfo &&
+                <Grid 
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Stack 
+                        direction="column"
+                        justifyContent="space-evenly"
+                        alignItems="center"
+                        spacing={2}
+                    >
+                        <h2>Match #{matchInfo.id}</h2>
+                        <TextField
+                            multiline 
+                            onChange={(event) => setNote(event.target.value)}
+                            label="match note"
+                            variant='outlined'
+                        />
+                        <br/>
+                        <Button 
+                            onClick={() => submitAndExit()}
+                            variant="contained"
+                        >
+                            Submit
+                        </Button>
+                        <br/>
+                        <Button
+                            onClick={() => history.goBack()}
+                            variant="outlined"
+                        >
+                            Back
+                        </Button>
+                    </Stack>
+                </Grid>
+            }
         </>
     )
 }

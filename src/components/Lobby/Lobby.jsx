@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { Grow } from '@mui/material';
 
 function Lobby() {
     const history = useHistory();
@@ -55,7 +56,9 @@ function Lobby() {
                     <h2>Players in Lobby</h2>
                     {matchUsers.map(player => {
                         return (
-                            <h3 key={player.junction_id}>{player.username}</h3>
+                            <Grow>
+                                <h3 key={player.junction_id}>{player.username}</h3>
+                            </Grow>
                         )
                     })}
                     {matchUsers.length >= 2 &&

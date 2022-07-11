@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import moment from 'moment';
+import { Grid, Stack, Button } from '@mui/material';
 
 
 function NewMatch() {
@@ -56,21 +57,36 @@ function NewMatch() {
         history.push(`/lobby/${nextNum}`);
     }
 
-    // const enter = () => {
-    //     history.push(`/lobby/${matchNum}`);
-    // }
-
     return (
-        <div className="newMatch_container">
-            <h2>Next Match: #{nextNum}</h2>
-            <h3>Date: {moment().format("MMM Do YYYY")}</h3>
-            <h3>Match Code: {matchCode}</h3>
-            <button onClick={() => creatNewMatch()}>Create and Join Lobby</button>
-            {/* <button onClick={enter}>Enter Lobby</button> */}
-            <Link to="/user">
-                <button>Back</button>
-            </Link>
-        </div>
+        <Grid 
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+        >
+            <Stack 
+                direction="column"
+                justifyContent="space-evenly"
+                alignItems="center"
+                spacing={2}
+            >
+                <h2>Next Match: #{nextNum}</h2>
+                <h3>Date: {moment().format("MMM Do YYYY")}</h3>
+                <h3>Match Code: {matchCode}</h3>
+                <Button
+                    onClick={() => creatNewMatch()}
+                    variant="contained"
+                >
+                    Create and Join Lobby
+                </Button>
+                <Button
+                    onClick={() => history.goBack()}
+                    variant="outlined"
+                >
+                    Back
+                </Button>
+            </Stack>
+      </Grid>
     )
 };
 export default NewMatch;
