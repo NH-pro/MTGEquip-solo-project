@@ -10,6 +10,12 @@ function* addPlayer(action) {
             type: 'SET_NEXT_MATCH_NUM',
             payload: matchId.data.id
         })
+        yield put({
+            type: 'FETCH_MATCH_USERS',
+            payload: {
+                matchId: matchId.data.id
+            }
+        })
     }
     catch (err) {
         console.log(`Error in addPlayer`, err);

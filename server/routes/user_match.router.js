@@ -19,6 +19,8 @@ router.post('/', (req, res) => {
         })
 });
 
+// This is a good spot to have an async where we pass the match code, check to see if there
+//  is a match with that code and then use that match id to join the match.
 router.post('/join', (req, res) => {
     const sqlQuery = `
         INSERT INTO "user_match_junction" ("match_id", "user_id", "hp", "poison")

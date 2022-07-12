@@ -51,6 +51,7 @@ router.get('/:matchId', (req, res) => {
     `;
     pool.query(sqlQuery, [req.user.id, req.params.matchId])
         .then(result => {
+            console.log('this is notes', result.rows)
             res.send(result.rows)
         })
         .catch(err => {
