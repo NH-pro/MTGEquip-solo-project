@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
-import './MatchHistory.css'
+import { Button, Stack, Container, Grid } from '@mui/material';
 
 function MatchHistory() {
     const history = useHistory();
@@ -25,20 +25,51 @@ function MatchHistory() {
 
     return (
         <>
-            <button  onClick={() => history.goBack()}>Back</button>
-            {actualHistory &&
-                <div className="history_list">
-                    {actualHistory.matchHistory.map((match) => {
-                        return (
-                            <div key={match.id} onClick={() => matchNotes(match.id)} className="history_match" >
-                                <h2>Match Id #{match.id}</h2>
-                                <h2>{moment(match.date).format('MM/DD/YYYY')}</h2>
-                            </div>
-                        )
-                    })}
-                </div>
-            }
-            <button  onClick={() => history.goBack()}>Back</button>
+            <Button  
+                onClick={() => history.goBack()}
+                variant="contained"
+                sx={{
+                        position: 'fixed',
+                        marginLeft: '.5em',
+                        marginTop: '1em'
+                    }}
+            >
+                Back
+            </Button>
+            <Grid 
+                container
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Stack
+                    direction="column"
+                    justifyContent="space-evenly"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    {actualHistory &&
+                        <>
+                            {actualHistory.matchHistory.map((match) => {
+                                return (
+                                    <Container
+                                        key={match.id} onClick={() => matchNotes(match.id)}
+                                        sx={{
+                                            border:'1px solid black',
+                                            padding: '0 3em',
+                                            borderRadius: '8px',
+                                            backgroundColor: 'skyblue'
+                                        }}
+                                    >
+                                        <h2>Match Id #{match.id}</h2>
+                                        <h2>{moment(match.date).format('MM/DD/YYYY')}</h2>
+                                    </Container>
+                                )
+                            })}
+                        </>
+                    }
+                </Stack>
+            </Grid>
         </>
     )
 }
