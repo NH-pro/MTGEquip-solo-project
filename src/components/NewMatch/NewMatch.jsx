@@ -43,7 +43,8 @@ function NewMatch() {
     const creatNewMatch = () => {
         // Combining random number and date into one object.
         const matchDetails = {
-            code: matchCode,
+            nextNum,
+            matchCode,
             date: date,
             creator: user.id
         };

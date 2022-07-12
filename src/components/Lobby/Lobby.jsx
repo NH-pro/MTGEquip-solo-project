@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { Grow } from '@mui/material';
 
 function Lobby() {
     const history = useHistory();
@@ -13,14 +12,15 @@ function Lobby() {
 
     useEffect(() => {
         dispatch({
-            type: 'FETCH_MATCH_USERS',
-            payload: matchId
-        })
-        dispatch({
             type: 'FETCH_MATCH_INFO',
             payload: matchId
         })
+        dispatch({
+            type: 'FETCH_MATCH_USERS',
+            payload: matchId
+        })
     }, [])
+
 
     const launchMatch = () => {
         if(user.id === matchInfo.creator_id) {
@@ -51,21 +51,19 @@ function Lobby() {
 
     return (
         <>
-            {matchUsers &&
+            <h2>Players in Lobby</h2>
                 <div>
-                    <h2>Players in Lobby</h2>
                     {matchUsers.map(player => {
                         return (
-                            <Grow>
-                                <h3 key={player.junction_id}>{player.username}</h3>
-                            </Grow>
+                            <div key={player.junction_id}>
+                                <h3 >{player.username}</h3>
+                            </div>
                         )
                     })}
                     {matchUsers.length >= 2 &&
                         <button onClick={() => launchMatch()}>Launch Game</button>
                     }
                 </div>
-            }
         </>
     )
 }

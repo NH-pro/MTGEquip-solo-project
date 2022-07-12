@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
         VALUES ($1, $2, $3)
         RETURNING "id";
     `;
-    pool.query(sqlQuery, [req.body.code, req.body.date, req.body.creator])
+    pool.query(sqlQuery, [req.body.matchCode, req.body.date, req.body.creator])
         .then(result => {
             res.sendStatus(200);
         })
