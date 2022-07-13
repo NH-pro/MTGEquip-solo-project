@@ -25,7 +25,7 @@ import MatchMenu from '../MatchMenu/MatchMenu';
 import MatchHistory from '../MatchHistory/MatchHistory';
 import HistoryNotes from '../HistoryNotes/HistoryNotes';
 
-import './App.css';
+// import './App.css';
 
 function App() {
   const dispatch = useDispatch();

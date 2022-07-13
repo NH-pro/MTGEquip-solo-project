@@ -4,6 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 // import './Match.css';
 import { Button, Grid, Stack, Paper, Box } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Match() {
     const dispatch = useDispatch();
@@ -120,68 +125,94 @@ function Match() {
                         direction="row"
                         justifyContent="space-evenly"
                         alignItems="center"
-                        spacing={2} 
+                        spacing={1}
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            marginTop: '1em'
+                        }}
                     >
                         {matchUsers.map((player) => {
                             if(player.user_id !== user.id) {
                                 return (
                                     <Stack
                                         key={player.user_id}
-                                        direction="column"
+                                        direction="row"
                                         justifyContent="space-evenly"
                                         alignItems="center"
-                                        spacing={2}
                                     >
-                                        <Paper
+                                        <Accordion
+                                            xs={4}
                                             elevation={4}
                                             sx={{
-                                                margin: '1em',
                                                 padding: '1em',
-                                                textAlign: 'center'
+                                                textAlign: 'center',
+                                                marginBottom: '1em'
                                             }}
                                         >
-                                        <h2>{player.username}</h2>
-                                        <h2>{player.hp}</h2>
-                                        {matchUsers.map((opponent) => {
-                                            if(opponent.user_id !== player.user_id) {
-                                                return (
-                                                    <h4 key={opponent.user_id}>
-                                                        {opponent.username} cdmg: {commDamage.map((comm) => {
-                                                            if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
-                                                                return (
-                                                                    comm.amount
-                                                                )
-                                                            }
-                                                        })}
-                                                    </h4>
-                                                )
-                                            }
-                                        })}
-                                        <h4>posion: {player.poison}</h4>
-                                        {commDamage.map((comm) => {
-                                            if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
-                                                return (
-                                                    <div key={comm.id}>
-                                                        <Button 
-                                                            onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                            variant="outlined"
-                                                        >
-                                                            +
-                                                        </Button>
-                                                        <br/>
-                                                        <h3 className='cdmg'>{player.username} cdmg: {comm.amount}</h3>
-                                                        <br/>
-                                                        <Button
-                                                            onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                            variant="outlined"
-                                                        >
-                                                            -
-                                                        </Button>
-                                                    </div>
-                                                )
-                                            }
-                                        })}
-                                        </Paper>
+                                            <AccordionSummary
+                                                expandIcon={<ExpandMoreIcon />}
+                                            >
+                                                <Stack
+                                                    direction="column"
+                                                    justifyContent="space-evenly"
+                                                    alignItems="start"
+                                                    spacing={1}
+                                                >
+                                                    <Typography
+                                                        variant='h5'
+                                                    >
+                                                        {player.username}
+                                                    </Typography>
+                                                    <Typography
+                                                        variant='h6'
+                                                    >
+                                                        {player.hp}
+                                                    </Typography>
+                                                </Stack>
+                                            </AccordionSummary>
+                                            <AccordionDetails>
+                                                {matchUsers.map((opponent) => {
+                                                if(opponent.user_id !== player.user_id) {
+                                                    return (
+                                                        <h4 key={opponent.user_id}>
+                                                            {opponent.username}: {commDamage.map((comm) => {
+                                                                if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
+                                                                    return (
+                                                                        comm.amount
+                                                                    )
+                                                                }
+                                                            })}
+                                                        </h4>
+                                                    )
+                                                }
+                                            })}
+                                            <h4>posion: {player.poison}</h4>
+                                            {commDamage.map((comm) => {
+                                                if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
+                                                    return (
+                                                        <div key={comm.id}>
+                                                            <Button 
+                                                                onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)}
+                                                                variant="outlined"
+                                                            >
+                                                                +
+                                                            </Button>
+                                                            <br/>
+                                                            <h3>CMDR: {comm.amount}</h3>
+                                                            <br/>
+                                                            <Button
+                                                                onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
+                                                                variant="outlined"
+                                                            >
+                                                                -
+                                                            </Button>
+                                                        </div>
+                                                    )
+                                                }
+                                            })}
+                                            </AccordionDetails>
+                                        </Accordion>
                                     </Stack>
                                 );
                             }
@@ -211,8 +242,6 @@ function Match() {
                                             textAlign: 'center'
                                         }}
                                     >
-                                        <h2>You</h2>
-                                        <br/>
                                         <Button
                                             onClick={() => menu()}
                                             variant="contained"
