@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
-import { Button, Stack, Container, Grid } from '@mui/material';
+import { Button, Stack, Typography, Grid, Card } from '@mui/material';
 
 function MatchHistory() {
     const history = useHistory();
@@ -52,18 +52,12 @@ function MatchHistory() {
                         <>
                             {actualHistory.matchHistory.map((match) => {
                                 return (
-                                    <Container
+                                    <Card
                                         key={match.id} onClick={() => matchNotes(match.id)}
-                                        sx={{
-                                            border:'1px solid black',
-                                            padding: '0 3em',
-                                            borderRadius: '8px',
-                                            backgroundColor: 'skyblue'
-                                        }}
                                     >
-                                        <h2>Match Id #{match.id}</h2>
-                                        <h2>{moment(match.date).format('MM/DD/YYYY')}</h2>
-                                    </Container>
+                                        <Typography>Match Id #{match.id}</Typography>
+                                        <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
+                                    </Card>
                                 )
                             })}
                         </>

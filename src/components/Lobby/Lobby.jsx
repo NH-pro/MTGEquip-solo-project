@@ -11,14 +11,18 @@ function Lobby() {
     const user = useSelector(store => store.user);
 
     useEffect(() => {
-        dispatch({
-            type: 'FETCH_MATCH_INFO',
-            payload: matchId
-        })
-        dispatch({
-            type: 'FETCH_MATCH_USERS',
-            payload: matchId
-        })
+        const interval = setInterval(() => {
+
+            dispatch({
+                type: 'FETCH_MATCH_INFO',
+                payload: matchId
+            })
+            dispatch({
+                type: 'FETCH_MATCH_USERS',
+                payload: matchId
+            })
+        }, 100);
+        return () => clearInterval(interval);
     }, [])
 
 

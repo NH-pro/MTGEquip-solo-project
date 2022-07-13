@@ -13,17 +13,22 @@ function Match() {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({
-            type: 'FETCH_MATCH_USERS',
-            payload: matchId
-        });
+        const interval = setInterval(() => {
+            dispatch({
+                type: 'FETCH_MATCH_USERS',
+                payload: matchId
+            });
+    
+            dispatch({
+                type: 'FETCH_COMMANDER_DMG_INFO',
+                payload: matchId
+            });
 
-        dispatch({
-            type: 'FETCH_COMMANDER_DMG_INFO',
-            payload: matchId
-        });
+        }, 100);
+        return () => clearInterval(interval);
+        }, []);
 
-    },[])
+
 
 
     const menu = () => {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import { Grid, Stack, Button, TextField } from '@mui/material';
+
 
 
 function HistoryNotes() {
@@ -54,39 +56,65 @@ function HistoryNotes() {
     }
 
     return (
-        <>
-            {notes &&
-                <div>
-                    {notes.map((singleNote) => {
-                        return (
-                            <div key={singleNote.id}>
-                                <textarea
-                                    readOnly
-                                    defaultValue={singleNote.note}
-                                    rows="10"
-                                    cols="40"
-                                    maxLength="400"
-                                />
-                                <br />
-                                <button onClick={() => deleteNote(singleNote.id)} >Delete Note</button>
-                            </div>
-                        )
-                    })}
-                </div>
-            }
-            <form onSubmit={() => addNote()}>
-                <textarea
-                    onChange={(event) => setNewNote(event.target.value)}
-                    rows="10"
-                    cols="40"
-                    maxLength="400"
-                />
+        <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+        >
+            <Stack 
+                direction="column"
+                justifyContent="space-evenly"
+                alignItems="center"
+                spacing={2}
+            >
+                {notes &&
+                    <div>
+                        {notes.map((singleNote) => {
+                            return (
+                                <div key={singleNote.id}>
+                                    <TextField
+                                        multiline
+                                        defaultValue={singleNote.note}
+                                        maxLength="400"
+                                        size='small'
+                                    />
+                                    <br />
+                                    <Button
+                                        onClick={() => deleteNote(singleNote.id)}
+                                        variant="contained"
+                                        color="error"
+                                    >
+                                        Delete
+                                    </Button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                }
+                <form onSubmit={() => addNote()}>
+                    <TextField
+                        onChange={(event) => setNewNote(event.target.value)}
+                        multiline
+                        maxLength="400"
+                    />
+                    <br />
+                    <Button
+                        type='submit'
+                        variant="contained"
+                    >
+                        Add Note
+                    </Button>
+                </form>
                 <br />
-                <button type='submit'>Add Note</button>
-            </form>
-            <br />
-            <button onClick={() => history.goBack()}>Back</button>
-        </>
+                <Button
+                    onClick={() => history.push('/matchHistory')}
+                    variant="contained"
+                >
+                    Back
+                </Button>
+            </Stack>
+        </Grid>
     )
 }
 export default HistoryNotes;
