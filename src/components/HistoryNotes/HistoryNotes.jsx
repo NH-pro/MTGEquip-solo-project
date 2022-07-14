@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useParams } from 'react-router-dom';
-import { Grid, Stack, Button, TextField } from '@mui/material';
+import { Grid, Stack, Button, TextField, Card } from '@mui/material';
 
 
 
@@ -46,7 +46,7 @@ function HistoryNotes() {
                 dispatch({
                     type: 'CREATE_MATCH_NOTE',
                     payload: {
-                        note: newNote,
+                        singleNote: newNote,
                         juncId: player.junction_id,
                         matchId
                     }
@@ -72,41 +72,75 @@ function HistoryNotes() {
                     <div>
                         {notes.map((singleNote) => {
                             return (
-                                <div key={singleNote.id}>
-                                    <TextField
-                                        multiline
-                                        defaultValue={singleNote.note}
-                                        maxLength="400"
-                                        size='small'
-                                    />
-                                    <br />
-                                    <Button
-                                        onClick={() => deleteNote(singleNote.id)}
-                                        variant="contained"
-                                        color="error"
+                                <Card
+                                    key={singleNote.id}
+                                    elevation={4}
+                                    sx={{
+                                        margin: "1em"
+                                    }}
+                                >
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="space-evenly"
+                                        alignItems="center"
+                                        spacing={0}
                                     >
-                                        Delete
-                                    </Button>
-                                </div>
+                                        <TextField
+                                            multiline
+                                            defaultValue={singleNote.note}
+                                            maxLength="400"
+                                            sx={{
+                                                margin: "1em"
+                                            }}
+                                        />
+                                        <Button
+                                            onClick={() => deleteNote(singleNote.id)}
+                                            variant="contained"
+                                            color="error"
+                                            size='small'
+                                            sx={{
+                                                margin: "1em"
+                                            }}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </Stack>
+                                    
+                                </Card>
                             )
                         })}
                     </div>
                 }
-                <form onSubmit={() => addNote()}>
-                    <TextField
-                        onChange={(event) => setNewNote(event.target.value)}
-                        multiline
-                        maxLength="400"
-                    />
-                    <br />
-                    <Button
-                        type='submit'
-                        variant="contained"
+                <Card
+                    elevation={4}
+                >
+                    <Stack
+                        direction="row"
+                        justifyContent="space-evenly"
+                        alignItems="center"
+                        spacing={0}
                     >
-                        Add Note
-                    </Button>
-                </form>
-                <br />
+                        <form onSubmit={() => addNote()}>
+                            <TextField
+                                onChange={(event) => setNewNote(event.target.value)}
+                                multiline
+                                maxLength="400"
+                                sx={{
+                                    margin: "1em"
+                                }}
+                            />
+                            <Button
+                                type='submit'
+                                variant="contained"
+                                sx={{
+                                    margin: "1em"
+                                }}
+                            >
+                                Add Note
+                            </Button>
+                        </form>
+                    </Stack>
+                </Card>
                 <Button
                     onClick={() => history.push('/matchHistory')}
                     variant="contained"

@@ -32,7 +32,6 @@ function* fetchNextMatchNumber() {
 }
 
 function* fetchMatchInfo(action) {
-    console.log('this is action.payload', Number(action.payload.matchId))
     try {
         const matchInfo = yield axios.get(`/api/match/id/${action.payload.matchId}`)
         yield put({
@@ -52,10 +51,21 @@ function* fetchMatchInfo(action) {
     }
 }
 
+function* editMatchWinner(action) {
+    console.log('this is action.payload', action.payload);
+    try {
+        yield axios.put(`/api/match`, action.payload)
+    }
+    catch (err) {
+        console.log('Error in editMatchWinner', err);
+    }
+}
+
 function* newMatchSaga() {
     yield takeEvery('CREATE_MATCH_DB', createNewMatch);
     yield takeEvery('FETCH_NEXT_MATCH_NUMBER', fetchNextMatchNumber)
     yield takeEvery('FETCH_MATCH_INFO', fetchMatchInfo);
+    yield takeEvery('EDIT_MATCH_WINNER', editMatchWinner)
 }
 
 export default newMatchSaga;

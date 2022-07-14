@@ -16,6 +16,7 @@ function MatchMenu() {
 
     const [noteBundle, setNoteBundle] = useState([])
     const [note, setNote] = useState('');
+    const [winner, setWinner] = useState(null);
 
 
     useEffect(() => {
@@ -28,6 +29,20 @@ function MatchMenu() {
             payload: matchId
         });
     },[])
+
+    function playerResult() {
+        console.log('in playerResult')
+        if(winner === null) {
+            for(let player of matchUsers) {
+                if(player.user_id === user.id) {
+                    setWinner(user.id);
+                }
+            }
+        }
+        else {
+            setWinner('')
+        }
+    }
 
     function addNote() {
         if(note !== '') {
@@ -57,9 +72,16 @@ function MatchMenu() {
                         }
                     })
                 }
-                history.push('/');
+                dispatch({
+                    type: 'EDIT_MATCH_WINNER',
+                    payload: {
+                        winner,
+                        matchId
+                    }
+                })
             }
         }
+        history.push('/');
     }
 
     return (
@@ -108,7 +130,9 @@ function MatchMenu() {
                             <FormGroup>
                                 <FormControlLabel
                                     control={
-                                        <Switch 
+                                        <Switch
+                                            color='warning'
+                                            onChange={() => playerResult()}
                                         />
                                     }
                                     label="Match Result"
