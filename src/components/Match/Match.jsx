@@ -227,7 +227,7 @@ function Match() {
                                 sx={{
                                     margin: '1em',
                                     padding: '1em',
-                                    backgroundColor: 'floralwhite'
+                                    backgroundColor: 'floralwhite',
                                 }}
                             >
                                 <Stack
@@ -235,11 +235,11 @@ function Match() {
                                     direction="row"
                                     justifyContent="space-evenly"
                                     alignItems="center"
-                                    spacing={2}
+                                    spacing={0}
                                 >
                                     <Box
                                         sx={{
-                                            textAlign: 'center'
+                                            textAlign: 'center',
                                         }}
                                     >
                                         <Button
@@ -249,15 +249,26 @@ function Match() {
                                             Menu
                                         </Button> 
                                     </Box>
-                                    <div>
+                                    <Box
+                                        sx={{
+                                            textAlign: 'center'
+                                         }}
+                                    >
                                         <Button
                                             variant="outlined"
                                             onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                            sx={{
+                                                marginBottom: '1em'
+                                            }}
                                         >
                                         +
                                         </Button>
                                         <br/>
-                                        <h3 >Poison: {player.poison}</h3>
+                                        <Typography 
+                                            variant='h5'
+                                        >
+                                            Psn: {player.poison}
+                                        </Typography>
                                         <br/>
                                         <Button
                                             variant="outlined"
@@ -265,16 +276,26 @@ function Match() {
                                         >
                                             -
                                         </Button>
-                                    </div>
-                                    <div>
+                                    </Box>
+                                    <Box
+                                    >
                                         <Button
                                             variant="outlined"
                                             onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
+                                            sx={{
+                                                marginBottom: '1em',
+                                                borderBottom: 'none',
+                                                width: 'container'
+                                            }}
                                         >
                                         +
                                         </Button>
                                         <br/>
-                                        <h2 className='player_life'>{player.hp} Life</h2>
+                                        <Typography
+                                            variant='h5'
+                                        >
+                                            Life: {player.hp}
+                                        </Typography>
                                         <br/>
                                         <Button 
                                             variant="outlined"
@@ -282,7 +303,7 @@ function Match() {
                                         >
                                             -
                                         </Button>
-                                    </div>
+                                    </Box>
                                 </Stack>
                             </Paper>
                         )

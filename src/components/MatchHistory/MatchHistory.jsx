@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
-import { Button, Stack, Typography, Grid } from '@mui/material';
+import { Button, Stack, Typography, Grid, Paper } from '@mui/material';
 
 function MatchHistory() {
     const history = useHistory();

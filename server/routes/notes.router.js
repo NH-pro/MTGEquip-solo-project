@@ -22,7 +22,7 @@ router.post ('/', (req, res) => {
         INSERT INTO "notes" ("user_match_id", "note")
         VALUES ($1, $2);
     `;
-    pool.query(sqlQuery, [req.body.juncId, req.body.note])
+    pool.query(sqlQuery, [req.body.juncId, req.body.singleNote])
         .then(result => {
             res.sendStatus(200);
         })
