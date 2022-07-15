@@ -22,7 +22,7 @@ router.post ('/', (req, res) => {
         INSERT INTO "notes" ("user_match_id", "note")
         VALUES ($1, $2);
     `;
-    pool.query(sqlQuery, [req.body.juncId, req.body.note])
+    pool.query(sqlQuery, [req.body.juncId, req.body.singleNote])
         .then(result => {
             res.sendStatus(200);
         })
@@ -51,7 +51,6 @@ router.get('/:matchId', (req, res) => {
     `;
     pool.query(sqlQuery, [req.user.id, req.params.matchId])
         .then(result => {
-            console.log('this is notes', result.rows)
             res.send(result.rows)
         })
         .catch(err => {
@@ -64,12 +63,12 @@ router.get('/:matchId', (req, res) => {
 router.get('/userHistory/:userId', (req, res) => {
     const sqlQuery = `
         SELECT
-            match.id,
-            match.date,
-            match.winner_id
+            "match".id,
+            "match".date,
+            "match".winner_id
         FROM user_match_junction
-        JOIN match
-            ON user_match_junction.match_id = match.id
+        JOIN "match"
+            ON user_match_junction.match_id = "match".id
         JOIN "user"
             ON user_match_junction.user_id = "user".id
         WHERE "user".id = $1;

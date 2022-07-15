@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
-import { Button, Stack, Container, Grid } from '@mui/material';
+import { Button, Stack, Typography, Grid, Paper } from '@mui/material';
 
 function MatchHistory() {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const actualHistory = useSelector((store) => store.notesReducers.matchHistory)
+    const allUsers = useSelector((store) => store.notesReducers.allUsers)
 
     useEffect(() => {
         dispatch({
@@ -16,6 +17,9 @@ function MatchHistory() {
             payload: {
                 user: user.id
             }
+        })
+        dispatch({
+            type: 'FETCH_USERS'
         })
     },[])
 
@@ -26,7 +30,7 @@ function MatchHistory() {
     return (
         <>
             <Button  
-                onClick={() => history.goBack()}
+                onClick={() => history.push('/')}
                 variant="contained"
                 sx={{
                         position: 'fixed',
@@ -43,28 +47,54 @@ function MatchHistory() {
                 alignItems="center"
             >
                 <Stack
-                    direction="column"
+                    direction="row"
                     justifyContent="space-evenly"
                     alignItems="center"
-                    spacing={2}
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        marginTop: '20%',
+                    }}
                 >
                     {actualHistory &&
                         <>
                             {actualHistory.matchHistory.map((match) => {
-                                return (
-                                    <Container
-                                        key={match.id} onClick={() => matchNotes(match.id)}
-                                        sx={{
-                                            border:'1px solid black',
-                                            padding: '0 3em',
-                                            borderRadius: '8px',
-                                            backgroundColor: 'skyblue'
-                                        }}
-                                    >
-                                        <h2>Match Id #{match.id}</h2>
-                                        <h2>{moment(match.date).format('MM/DD/YYYY')}</h2>
-                                    </Container>
-                                )
+                                if(match.winner_id !== null) {
+                                    {allUsers.map((player) => {
+                                        if(player.id === match.winner_id) {
+                                            return (
+                                                <Paper
+                                                    key={match.id} onClick={() => matchNotes(match.id)}
+                                                    elevation={4}
+                                                    sx={{
+                                                        margin: '.5em .25em',
+                                                        padding: '.5em'
+                                                    }}
+                                                >
+                                                    <Typography>Match id #{match.id}</Typography>
+                                                    <Typography>Winner: {player.username}</Typography>
+                                                    <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
+                                                </Paper>
+                                            )
+                                        }
+                                    })}
+                                }
+                                else {
+                                    return (
+                                        <Paper
+                                            key={match.id} onClick={() => matchNotes(match.id)}
+                                            elevation={4}
+                                            sx={{
+                                                margin: '.5em .25em',
+                                                padding: '.5em'
+                                            }}
+                                        >
+                                            <Typography>Match id #{match.id}</Typography>
+                                            <Typography>Winner: TBD</Typography>
+                                            <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
+                                        </Paper>
+                                    )
+                                }
                             })}
                         </>
                     }

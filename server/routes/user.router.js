@@ -47,4 +47,21 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/all', (req, res) => {
+  const sqlQuery = `
+    SELECT 
+      "id",
+      "username"
+    FROM "user";
+  `;
+pool.query(sqlQuery)
+  .then(result => {
+    res.send(result.rows)
+  })
+  .catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;

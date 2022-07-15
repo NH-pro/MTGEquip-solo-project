@@ -37,7 +37,6 @@ router.get('/:matchCode', (req, res) => {
     })
 });
 
-
 /**
  * POST route template
  */
@@ -66,6 +65,22 @@ router.get('/id/:matchId', (req, res) => {
   pool.query(sqlQuery, [req.params.matchId])
     .then(result => {
       res.send(result.rows[0])
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    })
+})
+
+router.put('/', (req, res) => {
+  const sqlQuery = `
+    UPDATE match
+    SET winner_id = $1
+    WHERE id = $2
+  `
+  pool.query(sqlQuery, [req.body.winner, req.body.matchId.matchId])
+    .then(result => {
+      res.sendStatus(200);
     })
     .catch(err => {
       console.log(err);

@@ -2,7 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import './Match.css';
+// import './Match.css';
+import { Button, Grid, Stack, Paper, Box } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Match() {
     const dispatch = useDispatch();
@@ -13,17 +19,22 @@ function Match() {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch({
-            type: 'FETCH_MATCH_USERS',
-            payload: matchId
-        });
+        const interval = setInterval(() => {
+            dispatch({
+                type: 'FETCH_MATCH_USERS',
+                payload: matchId
+            });
+    
+            dispatch({
+                type: 'FETCH_COMMANDER_DMG_INFO',
+                payload: matchId
+            });
 
-        dispatch({
-            type: 'FETCH_COMMANDER_DMG_INFO',
-            payload: matchId
-        });
+        }, 100);
+        return () => clearInterval(interval);
+        }, []);
 
-    },[])
+
 
 
     const menu = () => {
@@ -102,97 +113,204 @@ function Match() {
     }
 
     return (
-        <>
-        {matchUsers &&
-            <div>
-            <div className='opponents_info'>
+        <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+        >
+            {matchUsers &&
+                <div>
+                    <Stack
+                        direction="row"
+                        justifyContent="space-evenly"
+                        alignItems="center"
+                        spacing={1}
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            marginTop: '1em'
+                        }}
+                    >
+                        {matchUsers.map((player) => {
+                            if(player.user_id !== user.id) {
+                                return (
+                                    <Stack
+                                        key={player.user_id}
+                                        direction="row"
+                                        justifyContent="space-evenly"
+                                        alignItems="center"
+                                    >
+                                        <Accordion
+                                            xs={4}
+                                            elevation={4}
+                                            sx={{
+                                                padding: '1em',
+                                                textAlign: 'center',
+                                                marginBottom: '1em'
+                                            }}
+                                        >
+                                            <AccordionSummary
+                                                expandIcon={<ExpandMoreIcon />}
+                                            >
+                                                <Stack
+                                                    direction="column"
+                                                    justifyContent="space-evenly"
+                                                    alignItems="start"
+                                                    spacing={1}
+                                                >
+                                                    <Typography
+                                                        variant='h5'
+                                                    >
+                                                        {player.username}
+                                                    </Typography>
+                                                    <Typography
+                                                        variant='h5'
+                                                    >
+                                                        {player.hp}
+                                                    </Typography>
+                                                </Stack>
+                                            </AccordionSummary>
+                                            <AccordionDetails>
+                                                {matchUsers.map((opponent) => {
+                                                if(opponent.user_id !== player.user_id) {
+                                                    return (
+                                                        <h4 key={opponent.user_id}>
+                                                            {opponent.username}: {commDamage.map((comm) => {
+                                                                if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
+                                                                    return (
+                                                                        comm.amount
+                                                                    )
+                                                                }
+                                                            })}
+                                                        </h4>
+                                                    )
+                                                }
+                                            })}
+                                            <h4>posion: {player.poison}</h4>
+                                            {commDamage.map((comm) => {
+                                                if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
+                                                    return (
+                                                        <div key={comm.id}>
+                                                            <Button 
+                                                                onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)}
+                                                                variant="outlined"
+                                                            >
+                                                                +
+                                                            </Button>
+                                                            <br/>
+                                                            <h3>CMDR: {comm.amount}</h3>
+                                                            <br/>
+                                                            <Button
+                                                                onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
+                                                                variant="outlined"
+                                                            >
+                                                                -
+                                                            </Button>
+                                                        </div>
+                                                    )
+                                                }
+                                            })}
+                                            </AccordionDetails>
+                                        </Accordion>
+                                    </Stack>
+                                );
+                            }
+                        })} 
+                    </Stack>
+                    
                 {matchUsers.map((player) => {
-                    if(player.user_id !== user.id) {
+                    if(player.user_id === user.id) {
                         return (
-                            <div className='opponent' key={player.user_id}>
-                                <h2>{player.username}</h2>
-                                <h2>{player.hp}</h2>
-                                {matchUsers.map((opponent) => {
-                                    if(opponent.user_id !== player.user_id) {
-                                        return (
-                                            <h4 key={opponent.user_id}>
-                                                {opponent.username} cdmg: {commDamage.map((comm) => {
-                                                    if(comm.attacker_id === opponent.user_id && comm.defender_id === player.user_id) {
-                                                        return (
-                                                            comm.amount
-                                                        )
-                                                    }
-                                                })}
-                                            </h4>
-                                        )
-                                    }
-                                })}
-                                <h4>posion: {player.poison}</h4>
-                                {commDamage.map((comm) => {
-                                    if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
-                                        return (
-                                            <div key={comm.id}>
-                                                <button onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)} className='add_btn'>+</button>
-                                                <br/>
-                                                <h3 className='cdmg'>{player.username} cdmg: {comm.amount}</h3>
-                                                <br/>
-                                                <button onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)} className='sub_btn'>-</button>
-                                            </div>
-                                        )
-                                    }
-                                })}
-                            </div>
-                        );
+                            <Paper
+                                elevation={4}
+                                sx={{
+                                    margin: '1em',
+                                    padding: '1em',
+                                    backgroundColor: 'floralwhite',
+                                }}
+                            >
+                                <Stack
+                                    key={player.user_id}
+                                    direction="row"
+                                    justifyContent="space-evenly"
+                                    alignItems="center"
+                                    spacing={0}
+                                >
+                                    <Box
+                                        sx={{
+                                            textAlign: 'center',
+                                        }}
+                                    >
+                                        <Button
+                                            onClick={() => menu()}
+                                            variant="contained"
+                                        >
+                                            Menu
+                                        </Button> 
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            textAlign: 'center'
+                                         }}
+                                    >
+                                        <Button
+                                            variant="outlined"
+                                            onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                            sx={{
+                                                marginBottom: '1em'
+                                            }}
+                                        >
+                                        +
+                                        </Button>
+                                        <br/>
+                                        <Typography 
+                                            variant='h5'
+                                        >
+                                            Psn: {player.poison}
+                                        </Typography>
+                                        <br/>
+                                        <Button
+                                            variant="outlined"
+                                            onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
+                                        >
+                                            -
+                                        </Button>
+                                    </Box>
+                                    <Box
+                                    >
+                                        <Button
+                                            variant="outlined"
+                                            onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
+                                            sx={{
+                                                marginBottom: '1em',
+                                                width: 'container'
+                                            }}
+                                        >
+                                        +
+                                        </Button>
+                                        <br/>
+                                        <Typography
+                                            variant='h5'
+                                        >
+                                            Life: {player.hp}
+                                        </Typography>
+                                        <br/>
+                                        <Button 
+                                            variant="outlined"
+                                            onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
+                                        >
+                                            -
+                                        </Button>
+                                    </Box>
+                                </Stack>
+                            </Paper>
+                        )
                     }
                 })} 
-            </div>
-            {matchUsers.map((player) => {
-                if(player.user_id === user.id) {
-                    return (
-                        <div key={player.user_id} className='user_info'>
-                            <h2>{player.username}</h2>
-                            <div>
-                                <button
-                                    className='add_btn'
-                                    onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
-                                >
-                                +
-                                </button>
-                                <br/>
-                                <h3 >Poison: {player.poison}</h3>
-                                <br/>
-                                <button
-                                    className='sub_btn'
-                                    onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
-                                >
-                                    -
-                                </button>
-                            </div>
-                            <div>
-                                <button
-                                    className='add_life_btn'
-                                    onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
-                                >
-                                +
-                                </button>
-                                <br/>
-                                <h2 className='player_life'>{player.hp} Life</h2>
-                                <br/>
-                                <button 
-                                    className='sub_life_btn'
-                                    onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
-                                >
-                                    -
-                                </button>
-                            </div>
-                        </div>
-                    )
-                }
-            })}
-            <button onClick={() => menu()} className='match_menu'>Menu</button>   
         </div>
         }
-        </>
+        </Grid>
     )
 };
 export default Match;
