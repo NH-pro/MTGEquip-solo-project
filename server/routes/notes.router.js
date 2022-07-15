@@ -63,12 +63,12 @@ router.get('/:matchId', (req, res) => {
 router.get('/userHistory/:userId', (req, res) => {
     const sqlQuery = `
         SELECT
-            match.id,
-            match.date,
-            match.winner_id
+            "match".id,
+            "match".date,
+            "match".winner_id
         FROM user_match_junction
-        JOIN match
-            ON user_match_junction.match_id = match.id
+        JOIN "match"
+            ON user_match_junction.match_id = "match".id
         JOIN "user"
             ON user_match_junction.user_id = "user".id
         WHERE "user".id = $1;

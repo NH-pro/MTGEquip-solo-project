@@ -165,7 +165,7 @@ function Match() {
                                                         {player.username}
                                                     </Typography>
                                                     <Typography
-                                                        variant='h6'
+                                                        variant='h5'
                                                     >
                                                         {player.hp}
                                                     </Typography>

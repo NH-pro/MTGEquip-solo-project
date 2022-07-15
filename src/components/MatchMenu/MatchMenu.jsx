@@ -30,6 +30,8 @@ function MatchMenu() {
         });
     },[])
 
+    console.log('this is matchId', matchId)
+
     function playerResult() {
         console.log('in playerResult')
         if(winner === null) {
@@ -117,7 +119,7 @@ function MatchMenu() {
                         </Button>
                         <br/>
                         <Button
-                            onClick={() => history.goBack()}
+                            onClick={() => history.push(`/match/${matchId.matchId}`)}
                             variant="outlined"
                         >
                             Back

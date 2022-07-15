@@ -30,7 +30,7 @@ function MatchHistory() {
     return (
         <>
             <Button  
-                onClick={() => history.goBack()}
+                onClick={() => history.push('/')}
                 variant="contained"
                 sx={{
                         position: 'fixed',
@@ -90,7 +90,7 @@ function MatchHistory() {
                                             }}
                                         >
                                             <Typography>Match id #{match.id}</Typography>
-                                            <Typography>Winner: Not Recorded</Typography>
+                                            <Typography>Winner: TBD</Typography>
                                             <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
                                         </Paper>
                                     )

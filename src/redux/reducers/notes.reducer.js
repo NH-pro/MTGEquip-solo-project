@@ -18,7 +18,7 @@ const matchNotes = (state = null, action) => {
     }
 };
 
-const allUsers = (state = [], action) => {
+const allUsers = (state = null, action) => {
     switch (action.type) {
         case 'SET_ALL_USERS':
             return action.payload;
