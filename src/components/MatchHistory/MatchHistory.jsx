@@ -29,6 +29,12 @@ function MatchHistory() {
 
     return (
         <>
+            <Typography
+                variant='h4'
+                textAlign='center'
+            >
+                Match History
+            </Typography>
             <Button  
                 onClick={() => history.push('/')}
                 variant="contained"
@@ -57,7 +63,7 @@ function MatchHistory() {
                     }}
                 >
                     {actualHistory &&
-                        <>
+                        <>  
                             {actualHistory.matchHistory.map((match) => {
                                 if(match.winner_id !== null) {
                                     {allUsers.map((player) => {

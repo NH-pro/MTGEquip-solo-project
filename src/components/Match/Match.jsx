@@ -235,7 +235,7 @@ function Match() {
                                     direction="row"
                                     justifyContent="space-evenly"
                                     alignItems="center"
-                                    spacing={0}
+                                    spacing={2}
                                 >
                                     <Box
                                         sx={{
