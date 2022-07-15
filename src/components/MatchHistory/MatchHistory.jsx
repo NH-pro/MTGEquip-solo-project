@@ -9,6 +9,7 @@ function MatchHistory() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const actualHistory = useSelector((store) => store.notesReducers.matchHistory)
+    const allUsers = useSelector((store) => store.notesReducers.allUsers)
 
     useEffect(() => {
         dispatch({
@@ -16,6 +17,9 @@ function MatchHistory() {
             payload: {
                 user: user.id
             }
+        })
+        dispatch({
+            type: 'FETCH_USERS'
         })
     },[])
 
@@ -43,22 +47,54 @@ function MatchHistory() {
                 alignItems="center"
             >
                 <Stack
-                    direction="column"
+                    direction="row"
                     justifyContent="space-evenly"
                     alignItems="center"
-                    spacing={2}
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        marginTop: '20%',
+                    }}
                 >
                     {actualHistory &&
                         <>
                             {actualHistory.matchHistory.map((match) => {
-                                return (
-                                    <Paper
-                                        key={match.id} onClick={() => matchNotes(match.id)}
-                                    >
-                                        <Typography>Match Id #{match.id}</Typography>
-                                        <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
-                                    </Paper>
-                                )
+                                if(match.winner_id !== null) {
+                                    {allUsers.map((player) => {
+                                        if(player.id === match.winner_id) {
+                                            return (
+                                                <Paper
+                                                    key={match.id} onClick={() => matchNotes(match.id)}
+                                                    elevation={4}
+                                                    sx={{
+                                                        margin: '.5em .25em',
+                                                        padding: '.5em'
+                                                    }}
+                                                >
+                                                    <Typography>Match id #{match.id}</Typography>
+                                                    <Typography>Winner: {player.username}</Typography>
+                                                    <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
+                                                </Paper>
+                                            )
+                                        }
+                                    })}
+                                }
+                                else {
+                                    return (
+                                        <Paper
+                                            key={match.id} onClick={() => matchNotes(match.id)}
+                                            elevation={4}
+                                            sx={{
+                                                margin: '.5em .25em',
+                                                padding: '.5em'
+                                            }}
+                                        >
+                                            <Typography>Match id #{match.id}</Typography>
+                                            <Typography>Winner: Not Recorded</Typography>
+                                            <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
+                                        </Paper>
+                                    )
+                                }
                             })}
                         </>
                     }

@@ -284,7 +284,6 @@ function Match() {
                                             onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
                                             sx={{
                                                 marginBottom: '1em',
-                                                borderBottom: 'none',
                                                 width: 'container'
                                             }}
                                         >

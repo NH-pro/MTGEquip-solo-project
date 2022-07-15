@@ -116,6 +116,13 @@ function MatchMenu() {
                             Add Note
                         </Button>
                         <br/>
+                        <Button
+                            onClick={() => history.goBack()}
+                            variant="outlined"
+                        >
+                            Back
+                        </Button>
+                        <br/>
                         <Stack 
                             direction="row"
                             alignItems="center"
@@ -158,12 +165,6 @@ function MatchMenu() {
                             Submit and Exit
                         </Button>
                         <br/>
-                        <Button
-                            onClick={() => history.goBack()}
-                            variant="outlined"
-                        >
-                            Back
-                        </Button>
                         {noteBundle.map((singleNote) => {
                             return (
                                 <TextField
