@@ -88,8 +88,15 @@ function JoinMatch() {
                     Enter Lobby
                 </Button>
                 <br/>
-                <Link to="/user">
-                    <button>Back</button>
+                <Link 
+                    to="/user"
+                    style={{textDecoration: 'none'}}
+                >
+                    <Button
+                        variant='contained'
+                    >
+                        Back
+                    </Button>
                 </Link>
             </Stack>
         </Grid>

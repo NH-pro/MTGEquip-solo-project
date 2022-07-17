@@ -12,7 +12,9 @@ function LogOutButton(props) {
       className={props.className}
       onClick={() => dispatch({ type: 'LOGOUT' })}
       variant="contained"
-      color="error"
+      sx={{
+        backgroundColor: "#D93829"
+      }}
     >
       Log Out
     </Button>

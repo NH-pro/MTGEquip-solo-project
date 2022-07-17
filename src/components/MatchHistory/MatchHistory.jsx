@@ -29,7 +29,7 @@ function MatchHistory() {
 
     return (
         <>
-                        <Button  
+            <Button  
                 onClick={() => history.push('/')}
                 variant="contained"
                 sx={{
@@ -106,8 +106,8 @@ function MatchHistory() {
                                             sx={{
                                                 margin: '.5em .25em',
                                                 padding: '.5em',
-                                                backgroundColor: 'skyblue',
-                                                color: 'midnightblue'
+                                                backgroundColor: 'lightgrey',
+                                                color: 'black'
                                             }}
                                         >
                                             <Typography>Match id #{match.id}</Typography>
