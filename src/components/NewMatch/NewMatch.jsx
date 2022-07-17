@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import moment from 'moment';
-import { Grid, Stack, Button, Popover, Typography } from '@mui/material';
+import { Grid, Stack, Button, Popover, Typography, Card } from '@mui/material';
 
 
 function NewMatch() {
@@ -83,6 +83,9 @@ function NewMatch() {
             direction="column"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                marginTop: '2em'
+            }}
         >
             <Stack 
                 direction="column"
@@ -90,16 +93,50 @@ function NewMatch() {
                 alignItems="center"
                 spacing={2}
             >
-                <h2>Next Match: #{nextNum}</h2>
-                <h3>Date: {moment().format("MMM Do YYYY")}</h3>
-                <h3>Match Code:</h3>
-                <h3 
-                    id="match_code" 
-                    onClick={() => copyText(matchCode)}
+                <Typography
+                    variant='h4'
+                    sx={{
+                        marginTop: '1em',
+                        backgroundColor: 'crimson',
+                        color: 'white',
+                        padding: '.5em',
+                        borderRadius: '5px'
+                    }}
                 >
-                    {matchCode}
-                </h3>
-
+                    Create Match: #{nextNum}
+                </Typography>
+                <Typography
+                    variant='h4'
+                    sx={{
+                        borderBottom: '5px solid crimson',
+                        borderRadius: '5px'
+                    }}
+                >
+                    {moment().format("MMM Do YYYY")}
+                </Typography>
+                <Typography
+                    variant='h5'
+                    sx={{
+                        paddingTop: '2em'
+                    }}
+                >
+                    Match Code:
+                </Typography>
+                <Card
+                    elevation={4}
+                    sx={{
+                        padding: '.25em 1em',
+                        marginTop: '5em',
+                    }}
+                >
+                    <Typography 
+                        variant='h4'
+                        id="match_code" 
+                        onClick={() => copyText(matchCode)}
+                    >
+                        {matchCode}
+                    </Typography>
+                </Card>
                 {open &&
                     <Popover
                         id={id}
@@ -115,7 +152,7 @@ function NewMatch() {
                             horizontal: 'left',
                         }}
                         sx={{
-                            marginLeft: '1em',
+                            marginLeft: '1.5em',
 
                         }}
                     >
@@ -128,9 +165,13 @@ function NewMatch() {
                         </Typography>
                     </Popover>
                 }
+                <br/>
                 <Button
                     onClick={() => creatNewMatch()}
                     variant="contained"
+                    sx={{
+                        marginTop: '2em'
+                    }}
                 >
                     Create and Join Lobby
                 </Button>
