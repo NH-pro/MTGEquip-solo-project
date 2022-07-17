@@ -18,8 +18,8 @@ function UserPage() {
         alignItems="center"
         sx={{
           backgroundImage: "url(https://media2.giphy.com/media/Pch8FiF08bc1G/giphy.gif?cid=ecf05e47ad1tt5e0j6k3c22fxtydxlrs08mdqc3ysj8bbwld&rid=giphy.gif&ct=g)",
-          backgroundSize: "500px 640px",
-          paddingBottom: "9em",
+          backgroundSize: "500px 610px",
+          paddingBottom: "3.5em",
           backgroundRepeat: "no-repeat"
         }}
       >
@@ -27,7 +27,7 @@ function UserPage() {
           elevation={4}
           sx={{
             padding: "1em",
-            marginTop: "5em",
+            marginTop: "3.5em",
             paddingBottom: "2em"
           }}
         >
@@ -63,6 +63,11 @@ function UserPage() {
             </Link>
             <br/>
             <LogOutButton />
+            <Link to='/about'>
+              <Button>
+                About
+              </Button>
+            </Link>
           </Stack>
         </Card>
       </Grid>

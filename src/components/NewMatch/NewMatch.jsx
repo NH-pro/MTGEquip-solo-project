@@ -106,8 +106,9 @@ function NewMatch() {
                     Create Match: #{nextNum}
                 </Typography>
                 <Typography
-                    variant='h4'
+                    variant='h5'
                     sx={{
+                        padding: '0em .5em',
                         borderBottom: '5px solid crimson',
                         borderRadius: '5px'
                     }}
@@ -176,7 +177,7 @@ function NewMatch() {
                     Create and Join Lobby
                 </Button>
                 <Button
-                    onClick={() => history.goBack()}
+                    onClick={() => history.push('/')}
                     variant="outlined"
                 >
                     Back
