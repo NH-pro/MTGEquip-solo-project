@@ -42,7 +42,11 @@ function JoinMatch() {
             justifyContent="center"
             alignItems="center"
             sx={{
-                marginTop: '2em'
+                marginTop: '4em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "2em",
+                borderRadius: "10px"
             }}
         >
             <Stack 
@@ -54,12 +58,10 @@ function JoinMatch() {
                 <Typography
                     variant='h4'
                     sx={{
-                        marginTop: '1em',
-                        backgroundColor: 'crimson',
+                        backgroundColor: '#D93829',
                         color: 'white',
-                        padding: '.25em',
-                        borderRadius: '5px',
-                        marginBottom: '1em'
+                        padding: '.5em',
+                        borderRadius: '5px'
                     }}
                 >
                     Join Match
@@ -77,6 +79,9 @@ function JoinMatch() {
                 <Button
                     onClick={() => submitJoin()}
                     variant= 'contained'
+                    sx={{
+                        backgroundColor: "#4F698C"
+                    }}
                 >
                     Submit
                 </Button>
@@ -84,6 +89,9 @@ function JoinMatch() {
                     disabled={btnDisabled}
                     onClick={enter}
                     variant= 'contained'
+                    sx={{
+                        backgroundColor: "#4F698C"
+                    }}
                 >
                     Enter Lobby
                 </Button>
@@ -94,6 +102,9 @@ function JoinMatch() {
                 >
                     <Button
                         variant='contained'
+                        sx={{
+                            backgroundColor: "#D99D55"
+                        }}
                     >
                         Back
                     </Button>

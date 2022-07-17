@@ -84,7 +84,11 @@ function NewMatch() {
             justifyContent="center"
             alignItems="center"
             sx={{
-                marginTop: '2em'
+                marginTop: '4em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "2em",
+                borderRadius: "10px"
             }}
         >
             <Stack 
@@ -96,8 +100,7 @@ function NewMatch() {
                 <Typography
                     variant='h4'
                     sx={{
-                        marginTop: '1em',
-                        backgroundColor: 'crimson',
+                        backgroundColor: '#D93829',
                         color: 'white',
                         padding: '.5em',
                         borderRadius: '5px'
@@ -109,7 +112,7 @@ function NewMatch() {
                     variant='h5'
                     sx={{
                         padding: '0em .5em',
-                        borderBottom: '5px solid crimson',
+                        borderBottom: '5px solid #73482F',
                         borderRadius: '5px'
                     }}
                 >
@@ -171,14 +174,18 @@ function NewMatch() {
                     onClick={() => creatNewMatch()}
                     variant="contained"
                     sx={{
-                        marginTop: '2em'
+                        marginTop: '2em',
+                        backgroundColor: '#4F698C'
                     }}
                 >
                     Create and Join Lobby
                 </Button>
                 <Button
                     onClick={() => history.push('/')}
-                    variant="outlined"
+                    variant="contained"
+                    sx={{
+                        backgroundColor: "#D99D55"
+                    }}
                 >
                     Back
                 </Button>

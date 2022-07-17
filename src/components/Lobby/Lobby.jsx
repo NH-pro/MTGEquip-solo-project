@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
+import { Grid, Button, Stack, Card, Typography } from '@mui/material';
 
 function Lobby() {
     const history = useHistory();
@@ -54,9 +55,47 @@ function Lobby() {
     }
 
     return (
-        <>
-            <h2>Players in Lobby</h2>
-                <div>
+        <Grid 
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+                marginTop: '4em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "2em",
+                borderRadius: "10px"
+            }}
+        >
+            <Stack 
+                direction="column"
+                justifyContent="space-evenly"
+                alignItems="center"
+                spacing={2}
+            >
+                <Typography
+                    variant='h4'
+                    sx={{
+                        backgroundColor: '#D93829',
+                        color: 'white',
+                        padding: '.5em',
+                        borderRadius: '5px'
+                    }}
+                >
+                    Players in Lobby
+                </Typography>
+                <Card
+                    elevation={6}
+                    sx={{
+                    padding: "1em",
+                    marginTop: "4.5em",
+                    paddingBottom: "2em",
+                    backgroundColor: 'white',
+                    paddingLeft: '2em',
+                    paddingRight: '2em'
+                    }}
+                >
                     {matchUsers.map(player => {
                         return (
                             <div key={player.junction_id}>
@@ -65,10 +104,20 @@ function Lobby() {
                         )
                     })}
                     {matchUsers.length >= 2 &&
-                        <button onClick={() => launchMatch()}>Launch Game</button>
+                        <Button 
+                            onClick={() => launchMatch()}
+                            variant="contained"
+                            sx={{
+                            backgroundColor: "#4F698C"
+                            }}
+                        >
+                            Launch Game
+                        </Button>
                     }
-                </div>
-        </>
+                </Card>
+            </Stack>
+            
+        </Grid>
     )
 }
 export default Lobby;

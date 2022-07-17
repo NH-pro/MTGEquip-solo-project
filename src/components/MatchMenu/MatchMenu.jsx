@@ -94,6 +94,13 @@ function MatchMenu() {
                     direction="column"
                     justifyContent="center"
                     alignItems="center"
+                    sx={{
+                        marginTop: '1em',
+                        marginBottom: '1em',
+                        backgroundColor: "#F2BF5E",
+                        padding: "1em",
+                        borderRadius: "10px"
+                    }}
                 >
                     <Stack 
                         direction="column"

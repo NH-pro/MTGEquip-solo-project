@@ -118,6 +118,13 @@ function Match() {
             direction="column"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                marginTop: '1em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "1em",
+                borderRadius: "10px"
+            }}
         >
             {matchUsers &&
                 <div>
@@ -128,8 +135,7 @@ function Match() {
                         spacing={1}
                         sx={{
                             display: 'flex',
-                            flexWrap: 'wrap',
-                            marginTop: '1em'
+                            flexWrap: 'wrap'
                         }}
                     >
                         {matchUsers.map((player) => {
@@ -194,7 +200,10 @@ function Match() {
                                                         <div key={comm.id}>
                                                             <Button 
                                                                 onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                                variant="outlined"
+                                                                variant= 'contained'
+                                                                sx={{
+                                                                    backgroundColor: "#4F698C"
+                                                                }}
                                                             >
                                                                 +
                                                             </Button>
@@ -203,7 +212,10 @@ function Match() {
                                                             <br/>
                                                             <Button
                                                                 onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                                variant="outlined"
+                                                                variant= 'contained'
+                                                                sx={{
+                                                                    backgroundColor: "#4F698C"
+                                                                }}
                                                             >
                                                                 -
                                                             </Button>
@@ -244,7 +256,10 @@ function Match() {
                                     >
                                         <Button
                                             onClick={() => menu()}
-                                            variant="contained"
+                                            variant='contained'
+                                            sx={{
+                                                backgroundColor: "#D99D55"
+                                            }}
                                         >
                                             Menu
                                         </Button> 
@@ -255,10 +270,10 @@ function Match() {
                                          }}
                                     >
                                         <Button
-                                            variant="outlined"
                                             onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                            variant= 'contained'
                                             sx={{
-                                                marginBottom: '1em'
+                                                backgroundColor: "#4F698C"
                                             }}
                                         >
                                         +
@@ -266,13 +281,19 @@ function Match() {
                                         <br/>
                                         <Typography 
                                             variant='h5'
+                                            sx={{
+                                                paddingTop: ".5em"
+                                            }}
                                         >
                                             Psn: {player.poison}
                                         </Typography>
                                         <br/>
                                         <Button
-                                            variant="outlined"
                                             onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
+                                            variant= 'contained'
+                                            sx={{
+                                                backgroundColor: "#4F698C"
+                                            }}
                                         >
                                             -
                                         </Button>
@@ -280,11 +301,10 @@ function Match() {
                                     <Box
                                     >
                                         <Button
-                                            variant="outlined"
                                             onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
+                                            variant= 'contained'
                                             sx={{
-                                                marginBottom: '1em',
-                                                width: 'container'
+                                                backgroundColor: "#D93829"
                                             }}
                                         >
                                         +
@@ -292,13 +312,19 @@ function Match() {
                                         <br/>
                                         <Typography
                                             variant='h5'
+                                            sx={{
+                                                paddingTop: '.5em'
+                                            }}
                                         >
                                             Life: {player.hp}
                                         </Typography>
                                         <br/>
                                         <Button 
-                                            variant="outlined"
                                             onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
+                                            variant= 'contained'
+                                            sx={{
+                                                backgroundColor: "#D93829"
+                                            }}
                                         >
                                             -
                                         </Button>
