@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import moment from 'moment';
-import { Grid, Stack, Button } from '@mui/material';
+import { Grid, Stack, Button, Popover, Typography } from '@mui/material';
 
 
 function NewMatch() {
@@ -18,6 +18,8 @@ function NewMatch() {
     // Using moment to grab the date.
     const date = moment().format("YYYY MM DD");
     const user = useSelector((store) => store.user);
+
+    const [anchorEl, setAnchorEl] = useState(null)
 
     useEffect(() => {
         // Fetching the next match id number
@@ -58,6 +60,23 @@ function NewMatch() {
         history.push(`/lobby/${nextNum}`);
     }
 
+    const open = Boolean(anchorEl);
+    const id = open ? 'popover' : undefined;
+    const closePopover = () => {
+        setAnchorEl(null);
+      };
+
+    function copyText(theCode) {
+        navigator.clipboard.writeText(theCode)
+        setAnchorEl("match_code");
+        if(open === false) {
+            setOpen(true);
+        }
+        else {
+            setOpen(false);
+        }
+    }
+
     return (
         <Grid 
             container
@@ -73,7 +92,42 @@ function NewMatch() {
             >
                 <h2>Next Match: #{nextNum}</h2>
                 <h3>Date: {moment().format("MMM Do YYYY")}</h3>
-                <h3>Match Code: {matchCode}</h3>
+                <h3>Match Code:</h3>
+                <h3 
+                    id="match_code" 
+                    onClick={() => copyText(matchCode)}
+                >
+                    {matchCode}
+                </h3>
+
+                {open &&
+                    <Popover
+                        id={id}
+                        anchorEl={document.getElementById('match_code')}
+                        open={open}
+                        onClose={closePopover}
+                        anchorOrigin={{
+                            vertical: 'center',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'center',
+                            horizontal: 'left',
+                        }}
+                        sx={{
+                            marginLeft: '1em',
+
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                padding: ".25em"
+                            }}
+                        >
+                            Copied!
+                        </Typography>
+                    </Popover>
+                }
                 <Button
                     onClick={() => creatNewMatch()}
                     variant="contained"

@@ -16,7 +16,7 @@ function MatchMenu() {
 
     const [noteBundle, setNoteBundle] = useState([])
     const [note, setNote] = useState('');
-    const [winner, setWinner] = useState(null);
+    const [winner, setWinner] = useState('');
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function MatchMenu() {
 
     function playerResult() {
         console.log('in playerResult')
-        if(winner === null) {
+        if(winner === '') {
             for(let player of matchUsers) {
                 if(player.user_id === user.id) {
                     setWinner(user.id);

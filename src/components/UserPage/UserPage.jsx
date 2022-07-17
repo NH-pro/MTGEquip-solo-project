@@ -18,8 +18,9 @@ function UserPage() {
         alignItems="center"
         sx={{
           backgroundImage: "url(https://media2.giphy.com/media/Pch8FiF08bc1G/giphy.gif?cid=ecf05e47ad1tt5e0j6k3c22fxtydxlrs08mdqc3ysj8bbwld&rid=giphy.gif&ct=g)",
-          backgroundSize: "500px 800px",
-          paddingBottom: "9em"
+          backgroundSize: "500px 640px",
+          paddingBottom: "9em",
+          backgroundRepeat: "no-repeat"
         }}
       >
         <Card
