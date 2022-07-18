@@ -18,7 +18,7 @@ function LoginPage() {
             history.push('/registration');
           }}
           sx={{
-            background: "#4F698C",
+            background: "#D93829",
           }}
         >
           Register
