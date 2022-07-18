@@ -72,7 +72,7 @@ function MatchHistory() {
                 </Card>
  
                 <Stack
-                    direction="row-reverse"
+                    direction="row"
                     justifyContent="space-evenly"
                     alignItems="center"
                     sx={{

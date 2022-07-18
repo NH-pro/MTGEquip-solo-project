@@ -132,6 +132,7 @@ function Match() {
                         direction="row"
                         justifyContent="space-evenly"
                         alignItems="center"
+                        spacing={1}
                         sx={{
                             display: 'flex',
                             flexWrap: 'wrap'
