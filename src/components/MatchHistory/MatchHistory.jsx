@@ -72,13 +72,13 @@ function MatchHistory() {
                 </Card>
  
                 <Stack
-                    direction="row"
+                    direction="row-reverse"
                     justifyContent="space-evenly"
                     alignItems="center"
                     sx={{
                         display: 'flex',
                         flexWrap: 'wrap',
-                        marginTop: '2em',
+                        marginTop: '2em'
                     }}
                 >
                     {actualHistory &&

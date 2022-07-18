@@ -63,7 +63,6 @@ function About() {
                                     <li>Redux</li>
                                     <li>Redux-Saga</li>
                                     <li>Moment</li>
-                                    <li>Passport</li>
                                     <li>Material UI</li>
                                 </ul>
                             </Typography>

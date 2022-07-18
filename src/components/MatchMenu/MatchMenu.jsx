@@ -95,7 +95,7 @@ function MatchMenu() {
                     justifyContent="center"
                     alignItems="center"
                     sx={{
-                        marginTop: '1em',
+                        marginTop: '3em',
                         marginBottom: '1em',
                         backgroundColor: "#F2BF5E",
                         padding: "1em",
@@ -106,42 +106,9 @@ function MatchMenu() {
                         direction="column"
                         justifyContent="space-evenly"
                         alignItems="center"
-                        spacing={2}
+                        spacing={4}
                     >
                         <h2>Match #{matchInfo.id}</h2>
-                        <TextField
-                            id='note_input'
-                            multiline 
-                            onChange={(event) => setNote(event.target.value)}
-                            label="match note"
-                            variant='outlined'
-                            sx={{
-                                backgroundColor: "white",
-                                borderRadius: '6px'
-                            }}
-                        />
-                        <br/>
-                        <Button
-                            variant= 'contained'
-                            sx={{
-                                backgroundColor: "#D93829"
-                            }}
-                            onClick={() => addNote()}
-                            
-                        >
-                            Add Note
-                        </Button>
-                        <br/>
-                        <Button
-                            onClick={() => history.push(`/match/${matchId.matchId}`)}
-                            variant='contained'
-                            sx={{
-                                backgroundColor: "#D99D55"
-                            }}
-                        >
-                            Back
-                        </Button>
-                        <br/>
                         <Stack 
                             direction="row"
                             alignItems="center"
@@ -176,7 +143,27 @@ function MatchMenu() {
                                 Won
                             </Typography>
                         </Stack>
-                        <br/>
+                        <TextField
+                            id='note_input'
+                            multiline 
+                            onChange={(event) => setNote(event.target.value)}
+                            label="match note"
+                            variant='outlined'
+                            sx={{
+                                backgroundColor: "white",
+                                borderRadius: '6px'
+                            }}
+                        />
+                        <Button
+                            variant= 'contained'
+                            sx={{
+                                backgroundColor: "#D93829"
+                            }}
+                            onClick={() => addNote()}
+                            
+                        >
+                            Add Note
+                        </Button>
                         <Button 
                             onClick={() => submitAndExit()}
                             variant= 'contained'
@@ -185,6 +172,15 @@ function MatchMenu() {
                             }}
                         >
                             Submit and Exit
+                        </Button>
+                        <Button
+                            onClick={() => history.push(`/match/${matchId.matchId}`)}
+                            variant='contained'
+                            sx={{
+                                backgroundColor: "#73482F"
+                            }}
+                        >
+                            Back
                         </Button>
                         <br/>
                         {noteBundle.map((singleNote) => {

@@ -132,7 +132,6 @@ function Match() {
                         direction="row"
                         justifyContent="space-evenly"
                         alignItems="center"
-                        spacing={1}
                         sx={{
                             display: 'flex',
                             flexWrap: 'wrap'
@@ -148,12 +147,10 @@ function Match() {
                                         alignItems="center"
                                     >
                                         <Accordion
-                                            xs={4}
                                             elevation={4}
                                             sx={{
-                                                padding: '1em',
+                                                padding: '.5em',
                                                 textAlign: 'center',
-                                                marginBottom: '1em'
                                             }}
                                         >
                                             <AccordionSummary
@@ -163,17 +160,19 @@ function Match() {
                                                     direction="column"
                                                     justifyContent="space-evenly"
                                                     alignItems="start"
-                                                    spacing={1}
                                                 >
                                                     <Typography
                                                         variant='h5'
+                                                        sx={{
+                                                            fontWeight: 'bold'
+                                                        }}
                                                     >
                                                         {player.username}
                                                     </Typography>
                                                     <Typography
                                                         variant='h5'
                                                     >
-                                                        {player.hp}
+                                                       Life: {player.hp}
                                                     </Typography>
                                                 </Stack>
                                             </AccordionSummary>
@@ -193,7 +192,7 @@ function Match() {
                                                     )
                                                 }
                                             })}
-                                            <h4>posion: {player.poison}</h4>
+                                            <h4>Psn: {player.poison}</h4>
                                             {commDamage.map((comm) => {
                                                 if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
                                                     return (
@@ -207,9 +206,7 @@ function Match() {
                                                             >
                                                                 +
                                                             </Button>
-                                                            <br/>
                                                             <h3>CMDR: {comm.amount}</h3>
-                                                            <br/>
                                                             <Button
                                                                 onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
                                                                 variant= 'contained'
@@ -273,7 +270,7 @@ function Match() {
                                             onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
                                             variant= 'contained'
                                             sx={{
-                                                backgroundColor: "#4F698C"
+                                                backgroundColor: "#87AD48"
                                             }}
                                         >
                                         +
@@ -292,7 +289,7 @@ function Match() {
                                             onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
                                             variant= 'contained'
                                             sx={{
-                                                backgroundColor: "#4F698C"
+                                                backgroundColor: "#87AD48"
                                             }}
                                         >
                                             -
