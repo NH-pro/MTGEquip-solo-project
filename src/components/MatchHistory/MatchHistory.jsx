@@ -34,8 +34,9 @@ function MatchHistory() {
                 variant="contained"
                 sx={{
                         position: 'fixed',
-                        marginLeft: '.5em',
-                        marginTop: '3.5em'
+                        marginLeft: '1em',
+                        marginTop: '3.5em',
+                        backgroundColor: '#F2BF5E'
                     }}
             >
                 Back
@@ -46,6 +47,11 @@ function MatchHistory() {
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
+                sx={{
+                    marginBottom: '1em',
+                    backgroundColor: "#D99D55",
+                    padding: "1em",
+                }}
             >
                 <Card
                     elevation={4}
@@ -53,7 +59,7 @@ function MatchHistory() {
                         marginLeft: '3em',
                         marginTop: '2em',
                         padding: '1em',
-                        backgroundColor: 'crimson',
+                        backgroundColor: '#4F698C',
                         color: 'white'
                     }}
                 >
@@ -88,6 +94,7 @@ function MatchHistory() {
                                                     sx={{
                                                         margin: '.5em .25em',
                                                         padding: '.5em',
+                                                        backgroundColor: '#F2BF5E'
                                                     }}
                                                 >
                                                     <Typography>Match id #{match.id}</Typography>
@@ -106,7 +113,7 @@ function MatchHistory() {
                                             sx={{
                                                 margin: '.5em .25em',
                                                 padding: '.5em',
-                                                backgroundColor: 'lightgrey',
+                                                backgroundColor: 'white',
                                                 color: 'black'
                                             }}
                                         >

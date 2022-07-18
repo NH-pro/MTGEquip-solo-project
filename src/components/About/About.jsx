@@ -10,11 +10,12 @@ function About() {
         <>
             <Button
                 onClick={() => history.push('/')}
-                variant="outlined"
+                variant="contained"
                 sx={{
                     position: 'fixed',
-                    marginTop: '41em',
-                    marginLeft: '.5em'
+                    marginTop: '40em',
+                    marginLeft: '1em',
+                    backgroundColor: '#F2BF5E'
                 }}
             >
                 Back
@@ -26,6 +27,9 @@ function About() {
                 alignItems="center"
                 sx={{
                     marginTop: '1em',
+                    padding: '2em',
+                    backgroundColor: '#D99D55',
+                    borderRadius: '10px'
                 }}
             >
                 <Stack 
@@ -39,7 +43,7 @@ function About() {
                         sx={{
                             padding: '1em',
                             paddingBottom: '.25em',
-                            backgroundColor: 'mistyrose'
+                            backgroundColor: 'white'
                         }}
                     >
                         <Stack>
@@ -71,7 +75,7 @@ function About() {
                         sx={{
                             padding: '1em',
                             paddingBottom: '.25em',
-                            backgroundColor: 'lavender'
+                            backgroundColor: 'white'
                             
                         }}
                     >

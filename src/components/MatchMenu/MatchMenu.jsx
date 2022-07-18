@@ -115,19 +115,29 @@ function MatchMenu() {
                             onChange={(event) => setNote(event.target.value)}
                             label="match note"
                             variant='outlined'
+                            sx={{
+                                backgroundColor: "white",
+                                borderRadius: '6px'
+                            }}
                         />
                         <br/>
                         <Button
-                            variant='contained'
+                            variant= 'contained'
+                            sx={{
+                                backgroundColor: "#D93829"
+                            }}
                             onClick={() => addNote()}
-                            color='success'
+                            
                         >
                             Add Note
                         </Button>
                         <br/>
                         <Button
                             onClick={() => history.push(`/match/${matchId.matchId}`)}
-                            variant="outlined"
+                            variant='contained'
+                            sx={{
+                                backgroundColor: "#D99D55"
+                            }}
                         >
                             Back
                         </Button>
@@ -169,7 +179,10 @@ function MatchMenu() {
                         <br/>
                         <Button 
                             onClick={() => submitAndExit()}
-                            variant="contained"
+                            variant= 'contained'
+                            sx={{
+                                backgroundColor: "#4F698C"
+                            }}
                         >
                             Submit and Exit
                         </Button>
@@ -183,6 +196,10 @@ function MatchMenu() {
                                     inputProps={
                                         { readOnly: true, }
                                     }
+                                    sx={{
+                                        backgroundColor: "white",
+                                        borderRadius: '6px'
+                                    }}
                                 >
                                 </TextField>
                             )
