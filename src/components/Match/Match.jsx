@@ -118,6 +118,13 @@ function Match() {
             direction="column"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                marginTop: '1em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "1em",
+                borderRadius: "10px"
+            }}
         >
             {matchUsers &&
                 <div>
@@ -125,11 +132,9 @@ function Match() {
                         direction="row"
                         justifyContent="space-evenly"
                         alignItems="center"
-                        spacing={1}
                         sx={{
                             display: 'flex',
-                            flexWrap: 'wrap',
-                            marginTop: '1em'
+                            flexWrap: 'wrap'
                         }}
                     >
                         {matchUsers.map((player) => {
@@ -142,12 +147,10 @@ function Match() {
                                         alignItems="center"
                                     >
                                         <Accordion
-                                            xs={4}
                                             elevation={4}
                                             sx={{
-                                                padding: '1em',
+                                                padding: '.5em',
                                                 textAlign: 'center',
-                                                marginBottom: '1em'
                                             }}
                                         >
                                             <AccordionSummary
@@ -157,17 +160,19 @@ function Match() {
                                                     direction="column"
                                                     justifyContent="space-evenly"
                                                     alignItems="start"
-                                                    spacing={1}
                                                 >
                                                     <Typography
                                                         variant='h5'
+                                                        sx={{
+                                                            fontWeight: 'bold'
+                                                        }}
                                                     >
                                                         {player.username}
                                                     </Typography>
                                                     <Typography
                                                         variant='h5'
                                                     >
-                                                        {player.hp}
+                                                       Life: {player.hp}
                                                     </Typography>
                                                 </Stack>
                                             </AccordionSummary>
@@ -187,23 +192,27 @@ function Match() {
                                                     )
                                                 }
                                             })}
-                                            <h4>posion: {player.poison}</h4>
+                                            <h4>Psn: {player.poison}</h4>
                                             {commDamage.map((comm) => {
                                                 if(comm.attacker_id === player.user_id && comm.defender_id === user.id) {
                                                     return (
                                                         <div key={comm.id}>
                                                             <Button 
                                                                 onClick={() => addCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                                variant="outlined"
+                                                                variant= 'contained'
+                                                                sx={{
+                                                                    backgroundColor: "#4F698C"
+                                                                }}
                                                             >
                                                                 +
                                                             </Button>
-                                                            <br/>
                                                             <h3>CMDR: {comm.amount}</h3>
-                                                            <br/>
                                                             <Button
                                                                 onClick={() => subCommDmg(comm.id, comm.amount, comm.match_id)}
-                                                                variant="outlined"
+                                                                variant= 'contained'
+                                                                sx={{
+                                                                    backgroundColor: "#4F698C"
+                                                                }}
                                                             >
                                                                 -
                                                             </Button>
@@ -244,7 +253,10 @@ function Match() {
                                     >
                                         <Button
                                             onClick={() => menu()}
-                                            variant="contained"
+                                            variant='contained'
+                                            sx={{
+                                                backgroundColor: "#D99D55"
+                                            }}
                                         >
                                             Menu
                                         </Button> 
@@ -255,10 +267,10 @@ function Match() {
                                          }}
                                     >
                                         <Button
-                                            variant="outlined"
                                             onClick={() => addPoison(player.junction_id, player.poison, player.match_id)}
+                                            variant= 'contained'
                                             sx={{
-                                                marginBottom: '1em'
+                                                backgroundColor: "#87AD48"
                                             }}
                                         >
                                         +
@@ -266,13 +278,19 @@ function Match() {
                                         <br/>
                                         <Typography 
                                             variant='h5'
+                                            sx={{
+                                                paddingTop: ".5em"
+                                            }}
                                         >
                                             Psn: {player.poison}
                                         </Typography>
                                         <br/>
                                         <Button
-                                            variant="outlined"
                                             onClick={() => subPoison(player.junction_id, player.poison, player.match_id)}
+                                            variant= 'contained'
+                                            sx={{
+                                                backgroundColor: "#87AD48"
+                                            }}
                                         >
                                             -
                                         </Button>
@@ -280,11 +298,10 @@ function Match() {
                                     <Box
                                     >
                                         <Button
-                                            variant="outlined"
                                             onClick={() => addLife(player.junction_id, player.hp, player.match_id)}
+                                            variant= 'contained'
                                             sx={{
-                                                marginBottom: '1em',
-                                                width: 'container'
+                                                backgroundColor: "#D93829"
                                             }}
                                         >
                                         +
@@ -292,13 +309,19 @@ function Match() {
                                         <br/>
                                         <Typography
                                             variant='h5'
+                                            sx={{
+                                                paddingTop: '.5em'
+                                            }}
                                         >
                                             Life: {player.hp}
                                         </Typography>
                                         <br/>
                                         <Button 
-                                            variant="outlined"
                                             onClick={() => subLife(player.junction_id, player.hp, player.match_id)}
+                                            variant= 'contained'
+                                            sx={{
+                                                backgroundColor: "#D93829"
+                                            }}
                                         >
                                             -
                                         </Button>

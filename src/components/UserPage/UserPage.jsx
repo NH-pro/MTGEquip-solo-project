@@ -2,7 +2,7 @@ import * as React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
-import { Button, Grid, Stack, Card } from '@mui/material';
+import { Button, Grid, Stack, Card, Typography } from '@mui/material';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import CreateIcon from '@mui/icons-material/Create';
@@ -18,16 +18,18 @@ function UserPage() {
         alignItems="center"
         sx={{
           backgroundImage: "url(https://media2.giphy.com/media/Pch8FiF08bc1G/giphy.gif?cid=ecf05e47ad1tt5e0j6k3c22fxtydxlrs08mdqc3ysj8bbwld&rid=giphy.gif&ct=g)",
-          backgroundSize: "500px 800px",
-          paddingBottom: "9em"
+          backgroundSize: "500px 630px",
+          paddingBottom: "6em",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <Card
-          elevation={4}
+          elevation={6}
           sx={{
             padding: "1em",
-            marginTop: "5em",
-            paddingBottom: "2em"
+            marginTop: "4.5em",
+            paddingBottom: "2em",
+            backgroundColor: '#F2BF5E'
           }}
         >
           <Stack 
@@ -36,12 +38,33 @@ function UserPage() {
             alignItems="center"
             spacing={2}
           >
-            <h1>⭑ MTG Equip ⭑</h1>
-            <h2>Hello, {user.username}!</h2>
+            <Typography
+              variant='h4'
+              sx={{
+                backgroundColor: "#D99D55",
+                color: 'white',
+                borderRadius: '5px',
+                padding: '.25em'
+              }}
+            >
+              ⭑ MTG Equip ⭑
+            </Typography>
+            <Typography
+              variant='h5'
+              sx={{
+                color: '#73482F',
+                fontWeight: 'bold'
+              }}
+            >
+              Hello, {user.username}!
+            </Typography>
             <br/>
             <Link to="/newMatch" style={{ textDecoration: 'none' }}>
-              <Button 
+              <Button
                 variant="contained"
+                sx={{
+                  backgroundColor: "#4F698C"
+                }}
               >
                 New Match &nbsp; <CreateIcon/>
               </Button>
@@ -49,6 +72,9 @@ function UserPage() {
             <Link to="/joinMatch" style={{ textDecoration: 'none' }}>
               <Button 
                 variant="contained"
+                sx={{
+                  backgroundColor: "#4F698C"
+                }}
               >
                 Join Match &nbsp; <ConnectWithoutContactIcon/>
               </Button>
@@ -56,12 +82,24 @@ function UserPage() {
             <Link to="/matchHistory" style={{ textDecoration: 'none' }}>
               <Button 
                 variant="contained"
+                sx={{
+                  backgroundColor: "#4F698C"
+                }}
               >
                 History &nbsp; <LibraryBooksIcon/>
               </Button>
             </Link>
             <br/>
             <LogOutButton />
+            <Link to='/about' style={{ textDecoration: 'none' }}>
+              <Button
+                sx={{
+                  color: "#73482F"
+                }}
+              >
+                About
+              </Button>
+            </Link>
           </Stack>
         </Card>
       </Grid>

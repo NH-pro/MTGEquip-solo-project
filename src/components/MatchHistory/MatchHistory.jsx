@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
-import { Button, Stack, Typography, Grid, Paper } from '@mui/material';
+import { Button, Stack, Typography, Grid, Card } from '@mui/material';
 
 function MatchHistory() {
     const history = useHistory();
@@ -29,37 +29,56 @@ function MatchHistory() {
 
     return (
         <>
-            <Typography
-                variant='h4'
-                textAlign='center'
-            >
-                Match History
-            </Typography>
             <Button  
                 onClick={() => history.push('/')}
                 variant="contained"
                 sx={{
                         position: 'fixed',
-                        marginLeft: '.5em',
-                        marginTop: '1em'
+                        marginLeft: '1em',
+                        marginTop: '3.5em',
+                        backgroundColor: '#F2BF5E'
                     }}
             >
                 Back
             </Button>
+
             <Grid 
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
+                sx={{
+                    marginBottom: '1em',
+                    backgroundColor: "#D99D55",
+                    padding: "1em",
+                }}
             >
+                <Card
+                    elevation={4}
+                    sx={{
+                        marginLeft: '3em',
+                        marginTop: '2em',
+                        padding: '1em',
+                        backgroundColor: '#4F698C',
+                        color: 'white'
+                    }}
+                >
+                    <Typography
+                        variant='h4'
+                        textAlign='center'
+                    >
+                        Match History
+                    </Typography>
+                </Card>
+ 
                 <Stack
-                    direction="row"
+                    direction="row-reverse"
                     justifyContent="space-evenly"
                     alignItems="center"
                     sx={{
                         display: 'flex',
                         flexWrap: 'wrap',
-                        marginTop: '20%',
+                        marginTop: '2em'
                     }}
                 >
                     {actualHistory &&
@@ -69,36 +88,39 @@ function MatchHistory() {
                                     {allUsers.map((player) => {
                                         if(player.id === match.winner_id) {
                                             return (
-                                                <Paper
+                                                <Card
                                                     key={match.id} onClick={() => matchNotes(match.id)}
                                                     elevation={4}
                                                     sx={{
                                                         margin: '.5em .25em',
-                                                        padding: '.5em'
+                                                        padding: '.5em',
+                                                        backgroundColor: '#F2BF5E'
                                                     }}
                                                 >
                                                     <Typography>Match id #{match.id}</Typography>
                                                     <Typography>Winner: {player.username}</Typography>
                                                     <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
-                                                </Paper>
+                                                </Card>
                                             )
                                         }
                                     })}
                                 }
                                 else {
                                     return (
-                                        <Paper
+                                        <Card
                                             key={match.id} onClick={() => matchNotes(match.id)}
                                             elevation={4}
                                             sx={{
                                                 margin: '.5em .25em',
-                                                padding: '.5em'
+                                                padding: '.5em',
+                                                backgroundColor: 'white',
+                                                color: 'black'
                                             }}
                                         >
                                             <Typography>Match id #{match.id}</Typography>
                                             <Typography>Winner: TBD</Typography>
                                             <Typography>{moment(match.date).format('MM/DD/YYYY')}</Typography>
-                                        </Paper>
+                                        </Card>
                                     )
                                 }
                             })}

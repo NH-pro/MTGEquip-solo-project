@@ -16,7 +16,7 @@ function MatchMenu() {
 
     const [noteBundle, setNoteBundle] = useState([])
     const [note, setNote] = useState('');
-    const [winner, setWinner] = useState(null);
+    const [winner, setWinner] = useState('');
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function MatchMenu() {
 
     function playerResult() {
         console.log('in playerResult')
-        if(winner === null) {
+        if(winner === '') {
             for(let player of matchUsers) {
                 if(player.user_id === user.id) {
                     setWinner(user.id);
@@ -94,37 +94,21 @@ function MatchMenu() {
                     direction="column"
                     justifyContent="center"
                     alignItems="center"
+                    sx={{
+                        marginTop: '3em',
+                        marginBottom: '1em',
+                        backgroundColor: "#F2BF5E",
+                        padding: "1em",
+                        borderRadius: "10px"
+                    }}
                 >
                     <Stack 
                         direction="column"
                         justifyContent="space-evenly"
                         alignItems="center"
-                        spacing={2}
+                        spacing={4}
                     >
                         <h2>Match #{matchInfo.id}</h2>
-                        <TextField
-                            id='note_input'
-                            multiline 
-                            onChange={(event) => setNote(event.target.value)}
-                            label="match note"
-                            variant='outlined'
-                        />
-                        <br/>
-                        <Button
-                            variant='contained'
-                            onClick={() => addNote()}
-                            color='success'
-                        >
-                            Add Note
-                        </Button>
-                        <br/>
-                        <Button
-                            onClick={() => history.push(`/match/${matchId.matchId}`)}
-                            variant="outlined"
-                        >
-                            Back
-                        </Button>
-                        <br/>
                         <Stack 
                             direction="row"
                             alignItems="center"
@@ -159,12 +143,44 @@ function MatchMenu() {
                                 Won
                             </Typography>
                         </Stack>
-                        <br/>
+                        <TextField
+                            id='note_input'
+                            multiline 
+                            onChange={(event) => setNote(event.target.value)}
+                            label="match note"
+                            variant='outlined'
+                            sx={{
+                                backgroundColor: "white",
+                                borderRadius: '6px'
+                            }}
+                        />
+                        <Button
+                            variant= 'contained'
+                            sx={{
+                                backgroundColor: "#D93829"
+                            }}
+                            onClick={() => addNote()}
+                            
+                        >
+                            Add Note
+                        </Button>
                         <Button 
                             onClick={() => submitAndExit()}
-                            variant="contained"
+                            variant= 'contained'
+                            sx={{
+                                backgroundColor: "#4F698C"
+                            }}
                         >
                             Submit and Exit
+                        </Button>
+                        <Button
+                            onClick={() => history.push(`/match/${matchId.matchId}`)}
+                            variant='contained'
+                            sx={{
+                                backgroundColor: "#73482F"
+                            }}
+                        >
+                            Back
                         </Button>
                         <br/>
                         {noteBundle.map((singleNote) => {
@@ -176,6 +192,10 @@ function MatchMenu() {
                                     inputProps={
                                         { readOnly: true, }
                                     }
+                                    sx={{
+                                        backgroundColor: "white",
+                                        borderRadius: '6px'
+                                    }}
                                 >
                                 </TextField>
                             )

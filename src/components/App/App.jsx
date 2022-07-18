@@ -24,8 +24,9 @@ import Lobby from '../Lobby/Lobby';
 import MatchMenu from '../MatchMenu/MatchMenu';
 import MatchHistory from '../MatchHistory/MatchHistory';
 import HistoryNotes from '../HistoryNotes/HistoryNotes';
+import About from '../About/About';
 
-// import './App.css';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +103,13 @@ function App() {
             path="/historyDetails/:matchId"
           >
             <HistoryNotes />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/about"
+          >
+            <About />
           </ProtectedRoute>
 
           <Route

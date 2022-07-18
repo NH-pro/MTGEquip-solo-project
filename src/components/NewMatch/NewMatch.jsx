@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch , useSelector } from 'react-redux';
 import moment from 'moment';
-import { Grid, Stack, Button } from '@mui/material';
+import { Grid, Stack, Button, Popover, Typography, Card } from '@mui/material';
 
 
 function NewMatch() {
@@ -18,6 +18,8 @@ function NewMatch() {
     // Using moment to grab the date.
     const date = moment().format("YYYY MM DD");
     const user = useSelector((store) => store.user);
+
+    const [anchorEl, setAnchorEl] = useState(null)
 
     useEffect(() => {
         // Fetching the next match id number
@@ -58,12 +60,36 @@ function NewMatch() {
         history.push(`/lobby/${nextNum}`);
     }
 
+    const open = Boolean(anchorEl);
+    const id = open ? 'popover' : undefined;
+    const closePopover = () => {
+        setAnchorEl(null);
+      };
+
+    function copyText(theCode) {
+        navigator.clipboard.writeText(theCode)
+        setAnchorEl("match_code");
+        if(open === false) {
+            setOpen(true);
+        }
+        else {
+            setOpen(false);
+        }
+    }
+
     return (
         <Grid 
             container
             direction="column"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                marginTop: '4em',
+                marginBottom: '1em',
+                backgroundColor: "#F2BF5E",
+                padding: "2em",
+                borderRadius: "10px"
+            }}
         >
             <Stack 
                 direction="column"
@@ -71,18 +97,95 @@ function NewMatch() {
                 alignItems="center"
                 spacing={2}
             >
-                <h2>Next Match: #{nextNum}</h2>
-                <h3>Date: {moment().format("MMM Do YYYY")}</h3>
-                <h3>Match Code: {matchCode}</h3>
+                <Typography
+                    variant='h4'
+                    sx={{
+                        backgroundColor: '#D93829',
+                        color: 'white',
+                        padding: '.5em',
+                        borderRadius: '5px'
+                    }}
+                >
+                    Create Match: #{nextNum}
+                </Typography>
+                <Typography
+                    variant='h5'
+                    sx={{
+                        padding: '0em .5em',
+                        borderBottom: '5px solid #73482F',
+                        borderRadius: '5px'
+                    }}
+                >
+                    {moment().format("MMM Do YYYY")}
+                </Typography>
+                <Typography
+                    variant='h5'
+                    sx={{
+                        paddingTop: '2em'
+                    }}
+                >
+                    Match Code:
+                </Typography>
+                <Card
+                    elevation={4}
+                    sx={{
+                        padding: '.25em 1em',
+                        marginTop: '5em',
+                    }}
+                >
+                    <Typography 
+                        variant='h4'
+                        id="match_code" 
+                        onClick={() => copyText(matchCode)}
+                    >
+                        {matchCode}
+                    </Typography>
+                </Card>
+                {open &&
+                    <Popover
+                        id={id}
+                        anchorEl={document.getElementById('match_code')}
+                        open={open}
+                        onClose={closePopover}
+                        anchorOrigin={{
+                            vertical: 'center',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'center',
+                            horizontal: 'left',
+                        }}
+                        sx={{
+                            marginLeft: '1.5em',
+
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                padding: ".25em"
+                            }}
+                        >
+                            Copied!
+                        </Typography>
+                    </Popover>
+                }
+                <br/>
                 <Button
                     onClick={() => creatNewMatch()}
                     variant="contained"
+                    sx={{
+                        marginTop: '2em',
+                        backgroundColor: '#4F698C'
+                    }}
                 >
                     Create and Join Lobby
                 </Button>
                 <Button
-                    onClick={() => history.goBack()}
-                    variant="outlined"
+                    onClick={() => history.push('/')}
+                    variant="contained"
+                    sx={{
+                        backgroundColor: "#D99D55"
+                    }}
                 >
                     Back
                 </Button>

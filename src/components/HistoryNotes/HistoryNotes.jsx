@@ -61,7 +61,46 @@ function HistoryNotes() {
             direction="column"
             justifyContent="center"
             alignItems="center"
+            sx={{
+                marginTop: '2em',
+                marginBottom: '1em',
+                backgroundColor: "#D99D55",
+                padding: "1em",
+                borderRadius: "10px"
+            }}
         >
+            <Card
+                    elevation={4}
+                >
+                    <Stack
+                        direction="row"
+                        justifyContent="space-evenly"
+                        alignItems="center"
+                        spacing={0}
+                    >
+                        <form onSubmit={() => addNote()}>
+                            <TextField
+                                id='noteField'
+                                onChange={(event) => setNewNote(event.target.value)}
+                                multiline
+                                maxLength="400"
+                                sx={{
+                                    margin: "1em"
+                                }}
+                            />
+                            <Button
+                                type='submit'
+                                variant="contained"
+                                sx={{
+                                    margin: "1em",
+                                    backgroundColor: "#4F698C"
+                                }}
+                            >
+                                Add Note
+                            </Button>
+                        </form>
+                    </Stack>
+                </Card>
             <Stack 
                 direction="column"
                 justifyContent="space-evenly"
@@ -96,10 +135,10 @@ function HistoryNotes() {
                                         <Button
                                             onClick={() => deleteNote(singleNote.id)}
                                             variant="contained"
-                                            color="error"
                                             size='small'
                                             sx={{
-                                                margin: "1em"
+                                                margin: "1em",
+                                                backgroundColor: "#D93829"
                                             }}
                                         >
                                             Delete
@@ -111,39 +150,13 @@ function HistoryNotes() {
                         })}
                     </div>
                 }
-                <Card
-                    elevation={4}
-                >
-                    <Stack
-                        direction="row"
-                        justifyContent="space-evenly"
-                        alignItems="center"
-                        spacing={0}
-                    >
-                        <form onSubmit={() => addNote()}>
-                            <TextField
-                                onChange={(event) => setNewNote(event.target.value)}
-                                multiline
-                                maxLength="400"
-                                sx={{
-                                    margin: "1em"
-                                }}
-                            />
-                            <Button
-                                type='submit'
-                                variant="contained"
-                                sx={{
-                                    margin: "1em"
-                                }}
-                            >
-                                Add Note
-                            </Button>
-                        </form>
-                    </Stack>
-                </Card>
+                
                 <Button
                     onClick={() => history.push('/matchHistory')}
                     variant="contained"
+                    sx={{
+                        backgroundColor: "#F2BF5E"
+                    }}
                 >
                     Back
                 </Button>
