@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function LoginPage() {
   const history = useHistory();
@@ -10,15 +11,18 @@ function LoginPage() {
       <LoginForm />
 
       <center>
-        <button
-          type="button"
+        <Button
+          variant='contained'
           className="btn btn_asLink"
           onClick={() => {
             history.push('/registration');
           }}
+          sx={{
+            background: "#4F698C",
+          }}
         >
           Register
-        </button>
+        </Button>
       </center>
     </div>
   );

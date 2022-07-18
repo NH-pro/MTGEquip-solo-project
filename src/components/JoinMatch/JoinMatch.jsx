@@ -75,6 +75,10 @@ function JoinMatch() {
                     type="text"
                     label='match code...'
                     onChange={(event) => {setMatchCode(event.target.value)}}
+                    sx={{
+                        backgroundColor: "white",
+                        borderRadius: "5px"
+                    }}
                 />
                 <Button
                     onClick={() => submitJoin()}
