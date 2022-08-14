@@ -1,6 +1,6 @@
-## MTG Equip
+##MTG Equip
 <br>
-## Description
-
+#Description
+<br>
 
 ![Alt Text](https://media.giphy.com/media/FIubwBmljZpjJrgDfg/giphy.gif)
