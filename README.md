@@ -11,7 +11,7 @@ I'm a huge fan of the card game Magic the Gathering and I primarily play a forma
 <br>
 Couple issues I've encountered with Commander:<br>
   - Games last a long time and it is hard to remember key areas to improve on.<br>
-  - There are a ton of values to keep track of and not everyone has dice to use.<br>
+  - There are a ton of values to keep track of.<br>
   - If you're the owner of the phone using a game tracker and you get knocked out first, it's a long time before you see your phone again.<br>
 <br>
 This project was designed to solve some of these problems I faced while playing.
