@@ -38,7 +38,7 @@ The first user, "Neil", starts a new match and invites another user to join the 
 I'd like to thank friends, family, [Prime Digital Academy](www.primeacademy.io) and the Gaiman cohort for their incredible support and giving me the tools to change my career. I could not have done this without them.
 
 ## Contact
-If you'd like to get in touch with me 👇
+If you'd like to get in touch with me:<br>
 <br>
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/neil-hanson-125bb5122/)
 [![Email](https://img.shields.io/badge/-gmail-orange?style=for-the-badge&logo=gmail)](mailto:neilhanson.pro@gmail.com) 
