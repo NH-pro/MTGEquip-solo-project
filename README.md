@@ -3,6 +3,8 @@
   - [Description](#description)
   - [Demo](#demo)
   - [Built With](#built-with)
+  - [Acknowledgement](#acknowledgement)
+  - [Contact](#contact)
 
 ## Description
 Duration: This was a 2 week sprint project.<br>
@@ -31,3 +33,12 @@ The first user, "Neil", starts a new match and invites another user to join the 
 <a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
 <a href="https://material-ui.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" height="40px" width="40px" /></a>
 <a href="https://nodejs.org/en/"><img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-plain.svg" height="40px" width="40px" /></a>
+
+## Acknowledgement
+I'd like to thank friends, family, [Prime Digital Academy](www.primeacademy.io) and the Gaiman cohort for their incredible support and giving me the tools to change my career. I could not have done this without them.
+
+## Contact
+If you'd like to get in touch with me 👇
+<br>
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/neil-hanson-125bb5122/)
+[![Email](https://img.shields.io/badge/-gmail-orange?style=for-the-badge&logo=gmail)](mailto:neilhanson.pro@gmail.com) 
