@@ -3,6 +3,8 @@
   - [Description](#description)
   - [Demo](#demo)
   - [Built With](#built-with)
+  - [Prerequisites](#prerequisites)
+  - [Check It Out!](#check-it-out!)
   - [Acknowledgement](#acknowledgement)
   - [Contact](#contact)
 
@@ -35,6 +37,16 @@ The first user, "Neil", starts a new match and invites another user to join the 
 <a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
 <a href="https://material-ui.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" height="40px" width="40px" /></a>
 <a href="https://nodejs.org/en/"><img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-plain.svg" height="40px" width="40px" /></a>
+
+## Prerequisites
+This software is required before installing the app:
+- [Node.js](https://nodejs.org/en/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [Nodemon](https://nodemon.io/)
+
+## Check It Out!
+My web app has been deployed on Heroku.<br>
+You can check it out at: https://mtg-equip.herokuapp.com/#/login
 
 ## Acknowledgement
 I'd like to thank friends, family, [Prime Digital Academy](www.primeacademy.io) and the Gaiman cohort for their incredible support and giving me the tools to change my career. I could not have done this without them.
