@@ -9,14 +9,16 @@
 ## Description
 *Duration*: 2 week sprint<br>
 <br>
-I'm a huge fan of the card game Magic the Gathering and I primarily play a format of the game called "Commander". I love playing this game with friends, and we've encountered a couple issues with several aspects with it: <br>
+I'm a huge fan of the card game Magic the Gathering and I primarily play a format of the game called "Commander". I love playing this game with friends, and we've encountered a couple issues with several aspects with it:
+
   - Games last a long time and it is hard to remember key areas to improve on.
   - There are a ton of values to keep track of.
   - If you're the owner of the phone using a game tracker and you get knocked out first, it's a long time before you see your phone again.
 <br>
-This project was designed to solve some of these problems by giving users the ability to: <br>
-  - Keep track every player's values and display them on each user's phone. <br>
-  - Give users the ability to take notes and review their old matches. <br>
+This project was designed to solve some of these problems by giving users the ability to:
+
+  - Keep track every player's values and display them on each user's phone.
+  - Give users the ability to take notes and review their old matches.
 
 ## Demo
 In this demo, we have two users logged into the app.<br>
