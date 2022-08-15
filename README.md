@@ -16,7 +16,9 @@ Couple issues I've encountered with Commander:<br>
   - There are a ton of values to keep track of.<br>
   - If you're the owner of the phone using a game tracker and you get knocked out first, it's a long time before you see your phone again.<br>
 <br>
-This project was designed to solve some of these problems I faced while playing.
+This project was designed to solve some of these problems I faced while playing by giving users the ability to:<br>
+  - Keep track every player's values and display them on each user's phone.<br>
+  - Give users the ability to take notes and review their old matches.<br>
 
 ## Demo
 In this demo, we have two users logged into the app.<br>
