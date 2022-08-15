@@ -5,6 +5,7 @@
   - [Built With](#built-with)
   - [Prerequisites](#prerequisites)
   - [Check It Out!](#check-it-out!)
+  - [Future](#future)
   - [Acknowledgement](#acknowledgement)
   - [Contact](#contact)
 
@@ -47,6 +48,11 @@ This software is required before installing the app:
 ## Check It Out!
 My web app has been deployed on Heroku.<br>
 You can check it out at: https://mtg-equip.herokuapp.com/#/login
+
+## Future
+I don't have any current plans on adding additional features to this repo, but there are a couple things I would like to implement in future projects that are similar to this one:
+  - Use a QR code generator to easily connect users to match rooms instead of using a randomly generated string.
+  - Implement web sockets to connect users to rooms. This would help reduce the amount of api calls to the database with how my app is currently built.
 
 ## Acknowledgement
 I'd like to thank friends, family, [Prime Digital Academy](www.primeacademy.io) and the Gaiman cohort for their incredible support and giving me the tools to change my career. I could not have done this without them.
